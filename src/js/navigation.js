@@ -22,13 +22,22 @@ function baseContainers() {
 function drawFooter() {
 
     function socials() {
-        html = '<div class=row justify-content-sm-center>'
-             + '<a href="https://www.linkedin.com/in/jackskrable/" target="_blank">'
-             +     '<img src=css/images/linkedin-logo.png width=30 height=30>' 
-             + '</a>'
-             + '<a href="https://github.com/jskrable" target="_blank">'
-             +     '<img src=css/images/github-logo.png width=30 height=30>'
-             + '</a>'
+        html = '<div class="row justify-content-center">'
+             +   '<div class=col-sm-auto>'
+             +     '<a href="https://www.linkedin.com/in/jackskrable/" target="_blank">'
+             +       '<img src=css/images/linkedin-logo.png width=20 height=20>' 
+             +     '</a>'
+             +   '</div>'
+             +   '<div class=col-sm-auto>'
+             +     '<a href="https://github.com/jskrable" target="_blank">'
+             +       '<img src=css/images/github-logo.png width=20 height=20>'
+             +     '</a>'
+             +   '</div>'
+             +   '<div class=col-sm-auto>'
+             +     '<a href="mailto:j.skrable@gmail.com" target="_blank">'
+             +       '<img src=css/images/email.png width=20 height=20>'
+             +     '</a>'
+             +   '</div>'
              + '</div>'
         return html;
 
@@ -36,7 +45,7 @@ function drawFooter() {
 
     function copyright() {
         year = new Date().getFullYear();
-        cp_html = '<div class=row justify-content-sm-center>'
+        cp_html = '<div class="row justify-content-center">'
                     + '<p><weak>'
                         + '&copy; Jack Skrable, ' + year
                     + '</weak></p>'
