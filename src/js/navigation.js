@@ -24,7 +24,10 @@ function baseContainers() {
 
 function loadHome() {
     console.log('loading home page...');
-    var wallpaper = '<div class="view" style="background-image: url(\'' + config.images.home + '\'); background-repeat: no-repeat; background-size: cover; background-position: center center;">'
+    $('#wallpaper').remove();
+    var wallpaper = '<div id="wallpaper" class="view" style="background-image: url(\'' 
+        + config.images.home
+         + '\'); background-repeat: no-repeat; background-size: cover; background-position: center center;">'
     $('#header').append(wallpaper);
     // find a way to dynamically add content to the header to keep in on the bg image
     //$('#header').append('views/home.html');
