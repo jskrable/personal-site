@@ -22,6 +22,18 @@ function baseContainers() {
 }
 
 
+function loadHome() {
+    console.log('loading home page...');
+    $('#content').load('views/home.html');
+}
+
+
+function loadContact() {
+    console.log('loading contact page...');
+    $('#content').load('views/contact.html');
+}
+
+
 function drawNavbar() {
 
     function drawLinks(section) {
@@ -105,8 +117,21 @@ function drawFooter() {
 }
 
 
-function loadNavbar() {
-    $('#navbar').load('/views/navbar.html')
+function hookRedirect() {
+
+    function loadSection(section) {
+        var title = section.split('').map((x,i) => i == 0 ? x.toUpperCase() : x).join('');
+        var call = 'load' + title;
+        console.log(call);
+        // this isn't working
+        window[call]();
+    }
+
+    var url = window.location.hash;
+    var section = url.split('#')[1];
+    console.log(section);
+    // home hook isn't working
+    section == '' || typeof section === 'undefined' ? loadHome() : loadSection(section);
 
 }
 
@@ -115,5 +140,6 @@ function render() {
     //loadNavbar();
     $('#navbar').append(drawNavbar());
     $('#footer').append(drawFooter());
+    hookRedirect();
 
 }
