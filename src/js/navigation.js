@@ -4,6 +4,8 @@
     main controller script for site    
 */
 
+// Retrieve basic site configuration info
+var config = siteInfo();
 
 // jQuery called on page load
 $(function() {
@@ -11,6 +13,7 @@ $(function() {
 });
 
 
+// Create three basic divs for nav, content, and footer
 function baseContainers() {
     html = '<div id="navbar"></div>';
     html += '<div id="content"></div>';
@@ -19,29 +22,62 @@ function baseContainers() {
 }
 
 
-function drawFooter() {
+function drawNavbar() {
 
+    function drawLinks(section) {
+        var html = '';
+        var id = 'nav-' + section.toLowerCase();
+        var href = '#' + section.toLowerCase();
+        var click = 'load' + section + '();';
+
+        html += '<li class="nav-item">'
+             +    '<a class="nav-link" href="' + href + '" '
+             +      'onclick="' + click + '" '
+             +      'id="' + id + '">' + section + '</a>'
+             +  '</li>';
+
+        return html;
+    }
+
+    html = '<script type="text/javascript" src="js/active.js"></script>'
+         +   '<nav class="navbar navbar-dark bg-primary">'
+         +     '<a class="navbar-brand" href="#">HOME</a>'
+         +     '<button class="navbar-toggler" type="button" data-toggle="collapse" '
+         +       'data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" '
+         +       'aria-expanded="false" aria-label="Toggle navigation">'
+         +       '<span class="navbar-toggler-icon"></span>'
+         +     '</button>'
+         +     '<div class="collapse navbar-collapse" id="navbarSupportedContent">'
+         +       '<ul class="navbar-nav mr-auto">';
+
+    config.sections.forEach(x => html += drawLinks(x));
+
+    html += '</ul></div></nav>'
+
+    return html;
+
+}
+
+
+function drawFooter() {
     // Social media links for footer
-    // move this to config file?
     var links = [
         {
-            "href": "https://www.linkedin.com/in/jackskrable/",
+            "href": config.socials.linkedin,
             "img": "css/images/linkedin-logo.png"
         },
         {
-            "href": "https://github.com/jskrable",
+            "href": config.socials.github,
             "img": "css/images/github-logo.png"
         },
         {
-            "href": "mailto:j.skrable@gmail.com",
+            "href": config.email,
             "img": "css/images/email.png"
         }
-    ]
+    ];
 
     function drawLinks() {
-
         var html = '<div class="row justify-content-center">';
-
         links.forEach(x =>
             html += '<div class=col-auto px-0>'
                   +   '<a href="' + x['href'] + '" target="_blank">'
@@ -49,17 +85,14 @@ function drawFooter() {
                   +   '</a>'
                   + '</div>'
             );
-
         html += '</div>';
-
         return html;
-
     }
 
     function drawCopyright() {
         year = new Date().getFullYear();
         cp_html = '<div class="row justify-content-center">'
-                    + '<p>&copy; Jack Skrable, ' + year + '</p>'
+                    + '<p>&copy; ' + config.author + year + '</p>'
                 + '</div>'
         return cp_html;
     }
@@ -73,13 +106,14 @@ function drawFooter() {
 
 
 function loadNavbar() {
-    $('#navbar').load('/views/navbar.html')    
+    $('#navbar').load('/views/navbar.html')
 
 }
 
 function render() {
     $('.body').append(baseContainers());
-    loadNavbar();
+    //loadNavbar();
+    $('#navbar').append(drawNavbar());
     $('#footer').append(drawFooter());
 
 }
