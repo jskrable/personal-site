@@ -4,6 +4,7 @@
     main controller script for site    
 */
 
+
 // jQuery called on page load
 $(function() {
     render();
@@ -18,44 +19,54 @@ function baseContainers() {
 }
 
 
-// CENTER THESE BRO
 function drawFooter() {
 
-    function socials() {
-        html = '<div class="row justify-content-center">'
-             +   '<div class=col-sm-auto>'
-             +     '<a href="https://www.linkedin.com/in/jackskrable/" target="_blank">'
-             +       '<img src=css/images/linkedin-logo.png width=20 height=20>' 
-             +     '</a>'
-             +   '</div>'
-             +   '<div class=col-sm-auto>'
-             +     '<a href="https://github.com/jskrable" target="_blank">'
-             +       '<img src=css/images/github-logo.png width=20 height=20>'
-             +     '</a>'
-             +   '</div>'
-             +   '<div class=col-sm-auto>'
-             +     '<a href="mailto:j.skrable@gmail.com" target="_blank">'
-             +       '<img src=css/images/email.png width=20 height=20>'
-             +     '</a>'
-             +   '</div>'
-             + '</div>'
+    // Social media links for footer
+    // move this to config file?
+    var links = [
+        {
+            "href": "https://www.linkedin.com/in/jackskrable/",
+            "img": "css/images/linkedin-logo.png"
+        },
+        {
+            "href": "https://github.com/jskrable",
+            "img": "css/images/github-logo.png"
+        },
+        {
+            "href": "mailto:j.skrable@gmail.com",
+            "img": "css/images/email.png"
+        }
+    ]
+
+    function drawLinks() {
+
+        var html = '<div class="row justify-content-center">';
+
+        links.forEach(x =>
+            html += '<div class=col-auto px-0>'
+                  +   '<a href="' + x['href'] + '" target="_blank">'
+                  +     '<img src=' + x['img'] + ' width=30 height=30>' 
+                  +   '</a>'
+                  + '</div>'
+            );
+
+        html += '</div>';
+
         return html;
 
     }
 
-    function copyright() {
+    function drawCopyright() {
         year = new Date().getFullYear();
         cp_html = '<div class="row justify-content-center">'
-                    + '<p><weak>'
-                        + '&copy; Jack Skrable, ' + year
-                    + '</weak></p>'
+                    + '<p>&copy; Jack Skrable, ' + year + '</p>'
                 + '</div>'
         return cp_html;
     }
 
     html = '<div class=container>';
-    html += socials();
-    html += copyright();
+    html += drawLinks();
+    html += drawCopyright();
     html += '</div>'
     return html;
 }
