@@ -17,9 +17,13 @@ function siteInfo() {
 		    },
 		    "sections": [
 		        "About",
-		        "Portfolio",
+		        "Photos",
 		        "Contact"
-		    ]
+		    ],
+		    "images": {
+		    	"home": "css/images/tower.jpg",
+		    	"headshot": ""
+		    }
 		};
 	
 	return info;

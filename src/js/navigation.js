@@ -15,16 +15,19 @@ $(function() {
 
 // Create three basic divs for nav, content, and footer
 function baseContainers() {
-    html = '<div id="navbar"></div>';
+    html = '<header id="header"><div id="navbar"></div></header>';
     html += '<div id="content"></div>';
-    html += '<div id="footer" class="fixed-bottom d-flex justify-content-center"></div>';
+    html += '<footer><div id="footer" class="fixed-bottom d-flex justify-content-center"></div></footer>';
     return html;
 }
 
 
 function loadHome() {
     console.log('loading home page...');
-    $('#content').load('views/home.html');
+    var wallpaper = '<div class="view" style="background-image: url(\'' + config.images.home + '\'); background-repeat: no-repeat; background-size: cover; background-position: center center;">'
+    $('#header').append(wallpaper);
+    // find a way to dynamically add content to the header to keep in on the bg image
+    //$('#header').append('views/home.html');
 }
 
 
@@ -52,8 +55,8 @@ function drawNavbar() {
     }
 
     html = '<script type="text/javascript" src="js/active.js"></script>'
-         +   '<nav class="navbar navbar-dark bg-primary">'
-         +     '<a class="navbar-brand" href="#">HOME</a>'
+         +   '<nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">'
+         +     '<a class="navbar-brand" onclick=loadHome(); href="#"><strong>HOME</strong></a>'
          +     '<button class="navbar-toggler" type="button" data-toggle="collapse" '
          +       'data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" '
          +       'aria-expanded="false" aria-label="Toggle navigation">'
@@ -64,7 +67,7 @@ function drawNavbar() {
 
     config.sections.forEach(x => html += drawLinks(x));
 
-    html += '</ul></div></nav>'
+    html += '</ul></div></nav>';
 
     return html;
 
@@ -83,7 +86,7 @@ function drawFooter() {
             "img": "css/images/github-logo.png"
         },
         {
-            "href": config.email,
+            "href": "mailto:" + config.email,
             "img": "css/images/email.png"
         }
     ];
@@ -91,9 +94,10 @@ function drawFooter() {
     function drawLinks() {
         var html = '<div class="row justify-content-center">';
         links.forEach(x =>
-            html += '<div class=col-auto px-0>'
+            html += '<div class="col-auto px-1">'
+                // add link hover highlight here
                   +   '<a href="' + x['href'] + '" target="_blank">'
-                  +     '<img src=' + x['img'] + ' width=30 height=30>' 
+                  +     '<img src=' + x['img'] + ' width=20 height=20>' 
                   +   '</a>'
                   + '</div>'
             );
@@ -104,7 +108,7 @@ function drawFooter() {
     function drawCopyright() {
         year = new Date().getFullYear();
         cp_html = '<div class="row justify-content-center">'
-                    + '<p>&copy; ' + config.author + year + '</p>'
+                    + ['<p>&copy;', config.author, year, '</p>'].join(' ')
                 + '</div>'
         return cp_html;
     }
@@ -139,6 +143,7 @@ function render() {
     $('.body').append(baseContainers());
     //loadNavbar();
     $('#navbar').append(drawNavbar());
+
     $('#footer').append(drawFooter());
     hookRedirect();
 
