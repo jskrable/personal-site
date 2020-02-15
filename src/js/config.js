@@ -11,6 +11,7 @@ function siteInfo() {
 		    "title": "Jack Skrable's Personal Site",
 		    "author": "Jack Skrable",
 		    "email": "j.skrable@gmail.com",
+		    "bio": "BIO BIO BIO bio bio bio BIO BIO BIO bio bio bio BIO BIO BIO bio bio bio BIO BIO BIO bio bio bio BIO BIO BIO bio bio bio BIO BIO BIO bio bio bio BIO BIO BIO bio bio bio",
 		    "socials": {
 		        "github": "https://github.com/jskrable",
 		        "linkedin": "https://www.linkedin.com/in/jackskrable/"

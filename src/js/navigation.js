@@ -27,10 +27,18 @@ function loadHome() {
     $('#wallpaper').remove();
     var wallpaper = '<div id="wallpaper" class="view" style="background-image: url(\'' 
         + config.images.home
-         + '\'); background-repeat: no-repeat; background-size: cover; background-position: center center;">'
+        + '\'); background-repeat: no-repeat; background-size: cover; background-position: center center;">'
     $('#header').append(wallpaper);
     // find a way to dynamically add content to the header to keep in on the bg image
     //$('#header').append('views/home.html');
+    // need to center headshot within column
+    var info = '<div class="mask align-items-left"><div class="container py-5 px-5">'
+             + '<div class="row mt-5 px-5"><div class="col-md-6 white-text text-md-left">'
+             + '<img src="css/images/headshot.jpg" class="rounded-circle px-1 py-1">'
+             + '<h4 class="font-weight-bold py-3 px-1">'
+             + config.bio
+             + '</h4></div></div></div></div>';
+    $('#wallpaper').append(info);
 }
 
 
@@ -137,7 +145,6 @@ function hookRedirect() {
     var url = window.location.hash;
     var section = url.split('#')[1];
     console.log(section);
-    // home hook isn't working
     section == '' || typeof section === 'undefined' ? loadHome() : loadSection(section);
 
 }
@@ -146,7 +153,6 @@ function render() {
     $('.body').append(baseContainers());
     //loadNavbar();
     $('#navbar').append(drawNavbar());
-
     $('#footer').append(drawFooter());
     hookRedirect();
 
