@@ -23,7 +23,7 @@ function siteInfo() {
 		    ],
 		    "images": {
 		    	"home": "css/images/tower.jpg",
-		    	"headshot": ""
+		    	"headshot": "css/images/headshot.jpg"
 		    }
 		};
 	

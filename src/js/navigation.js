@@ -34,7 +34,7 @@ function loadHome() {
     // need to center headshot within column
     var info = '<div class="mask align-items-left"><div class="container py-5 px-5">'
              + '<div class="row mt-5 px-5"><div class="col-md-6 white-text text-md-left">'
-             + '<img src="css/images/headshot.jpg" class="rounded-circle px-1 py-1">'
+             + '<img src="' + config.images.headshot + '" class="rounded-circle px-1 py-1">'
              + '<h4 class="font-weight-bold py-3 px-1">'
              + config.bio
              + '</h4></div></div></div></div>';
