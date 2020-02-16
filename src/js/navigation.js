@@ -30,7 +30,7 @@ function fetchHTML(path) {
 // Create three basic divs for nav, content, and footer
 function baseContainers() {
     html = '<header id="header"><div id="navbar"></div></header>';
-    html += '<div id="content"></div>';
+    //html += '<div id="content"></div>';
     html += '<footer><div id="footer" class="fixed-bottom d-flex justify-content-center"></div></footer>';
     return html;
 }
@@ -88,6 +88,7 @@ function drawNavbar() {
         return html;
     }
 
+    // add this and close divs
     html = '<script type="text/javascript" src="js/active.js"></script>'
          +   '<nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">'
          +     '<a class="navbar-brand" onclick=loadHome(); href="#"><strong>HOME</strong></a>'
@@ -99,6 +100,7 @@ function drawNavbar() {
          +     '<div class="collapse navbar-collapse" id="navbarSupportedContent">'
          +       '<ul class="navbar-nav mr-auto">';
 
+    // use jquery here to insert section links?
     config.sections.forEach(x => html += drawLinks(x));
 
     html += '</ul></div></nav>';
@@ -172,6 +174,7 @@ function hookRedirect() {
 
 }
 
+// clear content on link click or refresh here
 function render() {
     $('.body').append(baseContainers());
     //loadNavbar();
