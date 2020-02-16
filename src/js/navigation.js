@@ -44,6 +44,8 @@ function loadWallpaper() {
     $('#header').append(wallpaper);
 }
 
+
+// change this to use fetchHTML
 function loadHome() {
     console.log('loading home page...');
     // find a way to dynamically add content to the header to keep in on the bg image
@@ -59,6 +61,7 @@ function loadHome() {
 }
 
 
+// USE THIS AS MODEL
 function loadContact() {
     console.log('loading contact page...');
     fetchHTML('views/contact.html')
@@ -67,6 +70,7 @@ function loadContact() {
 }
 
 
+// change this to use fetchHTML
 function drawNavbar() {
 
     function drawLinks(section) {
