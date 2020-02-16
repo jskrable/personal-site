@@ -13,6 +13,20 @@ $(function() {
 });
 
 
+function fetchHTML(path) {
+    var html = fetch(path).then(
+        (response) => response.text()).then(
+        (data) => {
+            //html += data;
+            console.log(data);
+            return data;
+        });
+
+    return html;
+}
+
+
+
 // Create three basic divs for nav, content, and footer
 function baseContainers() {
     html = '<header id="header"><div id="navbar"></div></header>';
@@ -22,13 +36,16 @@ function baseContainers() {
 }
 
 
-function loadHome() {
-    console.log('loading home page...');
+function loadWallpaper() {
     $('#wallpaper').remove();
     var wallpaper = '<div id="wallpaper" class="view" style="background-image: url(\'' 
         + config.images.home
         + '\'); background-repeat: no-repeat; background-size: cover; background-position: center center;">'
     $('#header').append(wallpaper);
+}
+
+function loadHome() {
+    console.log('loading home page...');
     // find a way to dynamically add content to the header to keep in on the bg image
     //$('#header').append('views/home.html');
     // need to center headshot within column
@@ -44,7 +61,9 @@ function loadHome() {
 
 function loadContact() {
     console.log('loading contact page...');
-    $('#content').load('views/contact.html');
+    fetchHTML('views/contact.html')
+        .then((response) => 
+            $('#wallpaper').append(response));
 }
 
 
@@ -154,6 +173,7 @@ function render() {
     //loadNavbar();
     $('#navbar').append(drawNavbar());
     $('#footer').append(drawFooter());
+    loadWallpaper();
     hookRedirect();
 
 }
