@@ -9,7 +9,9 @@ var config = siteInfo();
 
 // jQuery called on page load
 $(function() {
-    render();
+    // change this when site is complete
+    //render();
+    $('.body').load('views/construction.html');
 });
 
 
