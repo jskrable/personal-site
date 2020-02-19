@@ -43,13 +43,20 @@ function triggerLambda(params) {
 
     // Cognito pool credentials
     //AWS.config.update({region: 'us-east-1'});
-    AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+    AWS.config.update({
+        credentials: new AWS.CognitoIdentityCredentials({
+            IdentityPoolId: 'us-east-1:67de684f-034b-4fa9-a22a-ad307422b6b0'
+            }),
+          region: 'us-east-1'
+        });
+
+    /*AWS.config.credentials = new AWS.CognitoIdentityCredentials({
         IdentityPoolId: 'us-east-1:67de684f-034b-4fa9-a22a-ad307422b6b0',
-    });
-    console.log(AWS.config.credentials);
+    });*/
+    //console.log(AWS.config.credentials);
 
     // Config lambda
-    var lambda = new AWS.Lambda({region: 'us-east-1', apiVersion: '2015-03-31'});
+    var lambda = new AWS.Lambda({region: 'us-east-1'});
     // Initialize results
     var results;
     // Call lambda
