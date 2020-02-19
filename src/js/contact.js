@@ -39,6 +39,8 @@ $( document ).ready(function() {
         }   
     });*/
 
+
+// NEED TO WRITE LAMBDA FUNCTION
 function triggerLambda(params) {
 
     // Cognito pool credentials
