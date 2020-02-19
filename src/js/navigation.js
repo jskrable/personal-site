@@ -20,7 +20,7 @@ function fetchHTML(path) {
         (response) => response.text()).then(
         (data) => {
             //html += data;
-            console.log(data);
+            //console.log(data);
             return data;
         });
 
@@ -50,8 +50,6 @@ function loadWallpaper() {
 // change this to use fetchHTML
 function loadHome() {
     console.log('loading home page...');
-    // find a way to dynamically add content to the header to keep in on the bg image
-    //$('#header').append('views/home.html');
     // need to center headshot within column
     var info = '<div class="mask align-items-left"><div class="container py-5 px-5">'
              + '<div class="row mt-5 px-5"><div class="col-md-6 white-text text-md-left">'
@@ -79,7 +77,7 @@ function drawNavbar() {
         var html = '';
         var id = 'nav-' + section.toLowerCase();
         var href = '#' + section.toLowerCase();
-        var click = 'load' + section + '();';
+        var click = "loadSection('" + section + "');";
 
         html += '<li class="nav-item">'
              +    '<a class="nav-link" href="' + href + '" '
@@ -93,7 +91,7 @@ function drawNavbar() {
     // add this and close divs
     html = '<script type="text/javascript" src="js/active.js"></script>'
          +   '<nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">'
-         +     '<a class="navbar-brand" onclick=loadHome(); href="#"><strong>HOME</strong></a>'
+         +     '<a class="navbar-brand" onclick=loadSection(\'home\'); href="#"><strong>HOME</strong></a>'
          +     '<button class="navbar-toggler" type="button" data-toggle="collapse" '
          +       'data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" '
          +       'aria-expanded="false" aria-label="Toggle navigation">'
@@ -159,16 +157,22 @@ function drawFooter() {
 }
 
 
+/*function loadView(view) {
+
+    switch
+}*/
+
+
+function loadSection(section) {
+    var title = section.split('').map((x,i) => i == 0 ? x.toUpperCase() : x).join('');
+    var call = 'load' + title;
+    console.log(call);
+    console.log('removing existing content');
+    $('#wallpaper').children().remove();
+    window[call]();
+}
+
 function hookRedirect() {
-
-    function loadSection(section) {
-        var title = section.split('').map((x,i) => i == 0 ? x.toUpperCase() : x).join('');
-        var call = 'load' + title;
-        console.log(call);
-        // this isn't working
-        window[call]();
-    }
-
     var url = window.location.hash;
     var section = url.split('#')[1];
     console.log(section);
@@ -179,10 +183,8 @@ function hookRedirect() {
 // clear content on link click or refresh here
 function render() {
     $('.body').append(baseContainers());
-    //loadNavbar();
     $('#navbar').append(drawNavbar());
     $('#footer').append(drawFooter());
     loadWallpaper();
     hookRedirect();
-
 }
