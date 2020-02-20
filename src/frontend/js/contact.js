@@ -24,7 +24,7 @@ $( document ).ready(function() {
 
         // Setup lambda call
         var params = {
-            FunctionName: 'processContactForm',
+            FunctionName: config.aws.lambda.contact,
             InvocationType: 'RequestResponse',
             LogType: 'Tail',
             Payload: '{"submission": ' + JSON.stringify(submission) + '}'
@@ -76,19 +76,19 @@ function displaySubmission(message) {
 
 
 
-// NEED TO WRITE LAMBDA FUNCTION
+// REWRITE THIS...
 function triggerLambda(params) {
 
     // Cognito pool credentials
     AWS.config.update({
         credentials: new AWS.CognitoIdentityCredentials({
-            IdentityPoolId: 'us-east-1:67de684f-034b-4fa9-a22a-ad307422b6b0'
+            IdentityPoolId: config.aws.cognito.poolID
             }),
-          region: 'us-east-1'
+          region: config.aws.region
         });
 
     // Config lambda
-    var lambda = new AWS.Lambda({region: 'us-east-1'});
+    var lambda = new AWS.Lambda({region: config.aws.region});
     // Initialize results
     var results;
     // Call lambda
