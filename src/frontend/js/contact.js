@@ -6,31 +6,34 @@
 
 // Retrieve basic site configuration info
 var config = siteInfo();
+var fields = ['name','email','phone','message']
 
 // Get search query
 $( document ).ready(function() {
-        $('#submit').click((e) => {
-            submission = {
-                "name": $('#contact-name').val(),
-                "email": $('#contact-email').val(),
-                "phone": $('#contact-phone').val(),
-                "message": $('#contact-message').val()
+    $('#submit').click((e) => {
+        submission = {
+            "name": $('#contact-name').val(),
+            "email": $('#contact-email').val(),
+            "phone": $('#contact-phone').val(),
+            "message": $('#contact-message').val()
+        };
+
+
+        // NEED TO VALIDATE DATA HERE
+        console.log(submission);
+
+        // Setup lambda call
+        var params = {
+            FunctionName: 'processContactForm',
+            InvocationType: 'RequestResponse',
+            LogType: 'Tail',
+            Payload: '{"submission": ' + JSON.stringify(submission) + '}'
             };
-
-            console.log(submission);
-
-            // Setup lambda call
-            var params = {
-                FunctionName: 'processContactForm',
-                InvocationType: 'RequestResponse',
-                LogType: 'Tail',
-                Payload: '{"submission": ' + JSON.stringify(submission) + '}'
-                };
-            console.log(params);
-            triggerLambda(params);
-            
-        })
-    });
+        console.log(params);
+        triggerLambda(params);
+        
+    })
+});
 
     /*// Include enters for clicks
     $('#search').keypress((e) => {
@@ -40,11 +43,43 @@ $( document ).ready(function() {
     });*/
 
 
+
+// Create modal for response display 
+function displaySubmission(message) {
+
+    html = '<div id="response-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">' +
+             '<div class="modal-dialog" role="document">' +
+               '<div class="modal-content">' +
+                 '<div class="modal-body">' +
+                   '<h3 class="text-center">' + message + '</h3>' +
+                 '</div>' +
+                 '<div class="row justify-content-center">' +
+                   '<div class="modal-footer">' +
+                     '<button type="button" class="btn btn-primary text-center" data-dismiss="modal" type="reset">Close</button>' + 
+            '</div></div></div></div></div>';
+
+    // Add modal html to page
+    $('#wallpaper').append(html);
+    // Show modal
+    $('#response-modal').modal()
+
+    // exit modal and clear form
+    $('#response-modal').on('hidden.bs.modal', function (e) {
+        $(this).remove()
+        $('#contact-name').val('');
+        $('#contact-email').val('');
+        $('#contact-phone').val('');
+        $('#contact-message').val('');
+    });
+
+}
+
+
+
 // NEED TO WRITE LAMBDA FUNCTION
 function triggerLambda(params) {
 
     // Cognito pool credentials
-    //AWS.config.update({region: 'us-east-1'});
     AWS.config.update({
         credentials: new AWS.CognitoIdentityCredentials({
             IdentityPoolId: 'us-east-1:67de684f-034b-4fa9-a22a-ad307422b6b0'
@@ -52,34 +87,24 @@ function triggerLambda(params) {
           region: 'us-east-1'
         });
 
-    /*AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-        IdentityPoolId: 'us-east-1:67de684f-034b-4fa9-a22a-ad307422b6b0',
-    });*/
-    //console.log(AWS.config.credentials);
-
     // Config lambda
     var lambda = new AWS.Lambda({region: 'us-east-1'});
     // Initialize results
     var results;
     // Call lambda
-
-    // sending an error here?? rewrite this
+    // CATCH REAL ERRORS FROM THE LAMBDA HERE
     lambda.invoke(params, function(error, data) {
         if (error) {
-            prompt(error);
+            //prompt(error);
             window.alert(JSON.parse(error));
         } else {    
             window.message = JSON.parse(data.Payload);
             console.log(message);
-
             if (message != null) {
                 var response = message['body'];
-                console.log(response);
-                // Display results 
-                doModal(response);
-
+                console.log("Response: " + response);
+                displaySubmission('Thanks for your submission. I\'ll be in contact with you soon.');
             }
-
         }
     });
 

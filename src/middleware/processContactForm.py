@@ -21,6 +21,8 @@ def lambda_handler(event, context):
     #request = json.loads(event)
     #submission = request['submission']
     submission = event['submission']
+
+    # ACTUALLY USE RESPONSE HERE TO RETURN AN ERROR IF OCCURS
     update_table(submission)
     response = "Successful submission"
     return {
