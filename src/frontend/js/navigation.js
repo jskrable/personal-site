@@ -9,9 +9,9 @@ var config = siteInfo();
 
 // jQuery called on page load
 $(function() {
-    //render();
+    render();
     // uncomment for construction page default
-    $('.body').load('views/construction.html');
+    //$('.body').load('views/construction.html');
 });
 
 

@@ -10,7 +10,9 @@ middle="$dir/src/middleware/"
 aws s3 sync $front s3://jackskrable.com/
 
 # zip up middleware function
-zip package ./src/middleware/processContactForm.py
+cd ./src/middleware
+zip "$dir/package" processContactForm.py
+cd $dir
 
 # update lambda
 aws lambda update-function-code\
