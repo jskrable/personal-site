@@ -18,12 +18,14 @@ function siteInfo() {
 		    },
 		    "sections": [
 		        "About",
+		        "Projects",
 		        "Photos",
 		        "Contact"
 		    ],
 		    "images": {
 		    	"home": "css/images/tower.jpg",
-		    	"headshot": "css/images/headshot.jpg"
+		    	"headshot": "css/images/headshot.jpg",
+		    	"portfolio": "photos/"
 		    }
 		};
 	
