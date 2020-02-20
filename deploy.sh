@@ -1,15 +1,23 @@
+#!/bin/bash
+# sync frontend and middleware to AWS
 
+# set directory vars
+dir=$(pwd)
+front="$dir/src/frontend/"
+middle="$dir/src/middleware/"
 
+# sync frontend with s3 bucket
+aws s3 sync $front s3://jackskrable.com/
 
-
-aws s3 sync ./src/frontend/ s3://jackskrable.com/
-
+# zip up middleware function
 zip package ./src/middleware/processContactForm.py
 
+# update lambda
 aws lambda update-function-code\
  --function-name processContactForm\
- --zip-file fileb://./src/package.zip\
+ --zip-file "fileb://$dir/package.zip"\
  --region 'us-east-1'
 
-rm ./src/package.zip -rf
+# remove zipped middleware
+rm package.zip -rf
 
