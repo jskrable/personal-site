@@ -62,6 +62,8 @@ function triggerLambda(params) {
     // Initialize results
     var results;
     // Call lambda
+
+    // sending an error here?? rewrite this
     lambda.invoke(params, function(error, data) {
         if (error) {
             prompt(error);
