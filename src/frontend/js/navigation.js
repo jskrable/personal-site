@@ -22,7 +22,7 @@ function createViews() {
 }
 
 
-function fetchHTML(path) {
+/*function fetchHTML(path) {
     var html = fetch(path).then(
         (response) => response.text()).then(
         (data) => {
@@ -32,7 +32,7 @@ function fetchHTML(path) {
         });
 
     return html;
-}
+}*/
 
 
 
@@ -56,6 +56,8 @@ function loadWallpaper() {
 
 // change this to use fetchHTML
 function loadHome() {
+    console.log('removing existing content....');
+    $('#wallpaper').children().remove();
     console.log('loading home page...');
     // need to center headshot within column
     var info = '<div class="mask align-items-left"><div class="container py-5 px-5">'
@@ -68,13 +70,13 @@ function loadHome() {
 }
 
 
-// USE THIS AS MODEL
+/*// USE THIS AS MODEL
 function loadContact() {
     console.log('loading contact page...');
     fetchHTML('views/contact.html')
         .then((response) => 
             $('#wallpaper').append(response));
-}
+}*/
 
 
 // change this to use fetchHTML
@@ -98,7 +100,7 @@ function drawNavbar() {
     // add this and close divs
     html = '<script type="text/javascript" src="js/active.js"></script>'
          +   '<nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">'
-         +     '<a class="navbar-brand" onclick=loadSection(\'home\'); href="#"><strong>HOME</strong></a>'
+         +     '<a class="navbar-brand" onclick=loadHome(); href="#"><strong>HOME</strong></a>'
          +     '<button class="navbar-toggler" type="button" data-toggle="collapse" '
          +       'data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" '
          +       'aria-expanded="false" aria-label="Toggle navigation">'
@@ -170,14 +172,14 @@ function drawFooter() {
 }*/
 
 
-function loadSection(section) {
+/*function loadSection(section) {
     var title = section.split('').map((x,i) => i == 0 ? x.toUpperCase() : x).join('');
     var call = 'load' + title;
     console.log(call);
     console.log('removing existing content');
     $('#wallpaper').children().remove();
     window[call]();
-}
+}*/
 
 function hookRedirect() {
     var url = window.location.hash;
@@ -187,8 +189,6 @@ function hookRedirect() {
     section == '' || typeof section === 'undefined' ? 
         loadHome() :
         view['load']();
-        //loadSection(section);
-
 }
 
 // clear content on link click or refresh here
