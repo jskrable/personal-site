@@ -46,10 +46,11 @@ class Project {
     }
 
     card() {
+        console.log(this.photo) 
 
         html = '<div class="card bg-light mb-3" style="width: 18rem;">' +
                 // works only if GIF exists
-                 /*'<img src="' + this.photo '" class="card-img-top">' + */
+                 '<img src="' + this.photo + '" class="card-img-top">' + 
                  '<div class="card-body">' + 
                    '<h5 id="project-title" class="card-title">' + this.title + '</h5>' +
                    '<p class="card-text">' + this.description + '</p>' +
