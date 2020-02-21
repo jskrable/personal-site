@@ -41,7 +41,7 @@ class Project {
     constructor(title, description) {
         this.title = title;
         this.description = description;
-        this.photo = 'css/images/projects/' + this.title + '.gif';
+        this.photo = 'assets/projects/' + this.title + '.gif';
         this.repo = 'https://github.com/jskrable/' + this.title;
     }
 
@@ -60,3 +60,24 @@ class Project {
         return html;
     }
 }
+
+
+/*class Photo {
+
+    constructor(title) {
+        this.title = title;
+        this.description = description;
+        this.photo = 'css/images/projects/' + this.title + '.gif';
+        this.repo = 'https://github.com/jskrable/' + this.title;
+    }
+
+    card() {
+        console.log(this.photo) 
+
+        html = '<div class="card bg-light mb-3" style="width: 18rem;">' +
+                // works only if GIF exists
+                 '<img src="' + this.photo + '" class="card-img-top">' + 
+        return html;
+    }
+}
+*/
