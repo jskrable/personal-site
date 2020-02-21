@@ -50,7 +50,7 @@ function siteInfo() {
 		    		"description": "Custom cryptographic library in base Python 3.7. Includes classes for El Gamal and RSA, each with functions for encrypting, decrypting, and breaking. Breaking methods used are Pollard's Rho and baby step giant step."
 		    	},
 		    	{
-		    		"title": "TheSea",
+		    		"title": "the-sea",
 		    		"description": "An interactive application that mimics fish schooling behavior built in Java using the Processing library. Uses a genetic algorithm to train the fish to school better and avoid a predator object that roams searching for a meal."	
 		    	},
 		    	{
