@@ -19,7 +19,12 @@ function createViews() {
     config.sections.forEach(x => {
         let key = x.toLowerCase(); 
         this[key] = new View(key)});
+
+    home = new View('home');
 }
+
+
+
 
 
 /*function fetchHTML(path) {
@@ -38,8 +43,8 @@ function createViews() {
 
 // Create three basic divs for nav, content, and footer
 function baseContainers() {
-    html = '<header id="header"><div id="navbar"></div></header>';
-    //html += '<div id="content"></div>';
+    html = '<div id="header" class="fixed-top"></div>';//'<header id="header" class="fixed-top"></header>';
+    html += '<div id="content" class="body"></div>';
     html += '<footer><div id="footer" class="fixed-bottom d-flex justify-content-center"></div></footer>';
     return html;
 }
@@ -50,14 +55,14 @@ function loadWallpaper() {
     var wallpaper = '<div id="wallpaper" class="view" style="background-image: url(\'' 
         + config.images.home
         + '\'); background-repeat: no-repeat; background-size: cover; background-position: center center;">'
-    $('#header').append(wallpaper);
+    $('#content').append(wallpaper);
 }
 
 
 // change this to use fetchHTML
 function loadHome() {
     console.log('removing existing content....');
-    $('#wallpaper').children().remove();
+    //$('#wallpaper').children().remove();
     console.log('loading home page...');
     // need to center headshot within column
     var info = '<div class="mask align-items-left"><div class="container py-5 px-5">'
@@ -66,7 +71,7 @@ function loadHome() {
              + '<h4 class="font-weight-bold py-3 px-1">'
              + config.bio
              + '</h4></div></div></div></div>';
-    $('#wallpaper').append(info);
+    $('#content').append(info);
 }
 
 
@@ -100,7 +105,7 @@ function drawNavbar() {
     // add this and close divs
     html = '<script type="text/javascript" src="js/active.js"></script>'
          +   '<nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">'
-         +     '<a class="navbar-brand" onclick=loadHome(); href="#"><strong>HOME</strong></a>'
+         +     '<a class="navbar-brand" onclick=home.load(); href="#"><strong>HOME</strong></a>'
          +     '<button class="navbar-toggler" type="button" data-toggle="collapse" '
          +       'data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" '
          +       'aria-expanded="false" aria-label="Toggle navigation">'
@@ -187,14 +192,14 @@ function hookRedirect() {
     var view = window[section];
     console.log(section);
     section == '' || typeof section === 'undefined' ? 
-        loadHome() :
+        home.load() :
         view['load']();
 }
 
 // clear content on link click or refresh here
 function render() {
     $('.body').append(baseContainers());
-    $('#navbar').append(drawNavbar());
+    $('#header').append(drawNavbar());
     $('#footer').append(drawFooter());
     loadWallpaper();
     createViews();

@@ -47,7 +47,7 @@ $( document ).ready(function() {
 // Create modal for response display 
 function displaySubmission(message) {
 
-    html = '<div id="response-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">' +
+    html = '<div id="response-modal" class="modal fade h-100 d-flex flex-column justify-content-center my-0" tabindex="-1" role="dialog" aria-hidden="true">' +
              '<div class="modal-dialog" role="document">' +
                '<div class="modal-content">' +
                  '<div class="modal-body">' +

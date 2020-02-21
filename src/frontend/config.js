@@ -17,7 +17,6 @@ function siteInfo() {
 		        "linkedin": "https://www.linkedin.com/in/jackskrable/"
 		    },
 		    "sections": [
-		        "About",
 		        "Projects",
 		        "Photos",
 		        "Contact"

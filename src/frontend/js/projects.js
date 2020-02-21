@@ -7,51 +7,21 @@
 // Retrieve basic site configuration info
 var config = siteInfo();
 
-
-class Project {
-
-    constructor(title, description) {
-        this.title = title;
-        this.description = description;
-        this.photo = 'css/images/projects/' + this.title + '.gif';
-        this.repo = 'https://github.com/jskrable/' + this.title;
-    }
-
-    card() {
-/*        html = '<div class="card bg-light mb-3">' +
-                 '<div id="project-title" class="card-header text-bold">' +
-                   this.title + 
-                 '</div>' +
-                 '<p class="py-1 px-1">' + this.description + '</p>'
-               '</div>';*/
-
-        html = '<div class="card bg-light mb-3" style="width: 18rem;">' +
-                // works only if GIF exists
-                 /*'<img src="' + this.photo '" class="card-img-top">' + */
-                 '<div class="card-body">' + 
-                   '<h5 id="project-title" class="card-title">' + this.title + '</h5>' +
-                   '<p class="card-text">' + this.description + '</p>' +
-                   '<a href="' + this.repo + '" target="_blank" class="btn btn-primary">View on Github</a>' +
-                 '</div></div>'
-
-        return html;
-    }
-}
-
-var projects = config.projects.map(
+var projectList = config.projects.map(
     x => {
-        let key = x.title.split('-')[0].toLowerCase(); 
+        var key = x.title.split('-')[0].toLowerCase(); 
         console.log(key);
         this[key] = new Project(x.title, x.description)
         return this[key]
     });
 
 
-function showCards(projects) {
+// SCROLL NOT ALLOWED ON PROJECT VIEW FOR SOME REASON
+function showCards(projectList) {
 
     $('#loading').remove();
     var dest = $('#project-list');
-    projects.forEach(
+    projectList.forEach(
         x => {
             dest.append(x.card())
         });
@@ -74,5 +44,5 @@ function showCards(projects) {
 
 // Get search query
 $( document ).ready(function() {
-    showCards(projects);    
+    showCards(projectList);    
 });
