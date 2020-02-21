@@ -15,6 +15,13 @@ $(function() {
 });
 
 
+function createViews() {
+    config.sections.forEach(x => {
+        let key = x.toLowerCase(); 
+        this[key] = new View(key)});
+}
+
+
 function fetchHTML(path) {
     var html = fetch(path).then(
         (response) => response.text()).then(
@@ -77,7 +84,7 @@ function drawNavbar() {
         var html = '';
         var id = 'nav-' + section.toLowerCase();
         var href = '#' + section.toLowerCase();
-        var click = "loadSection('" + section + "');";
+        var click = section.toLowerCase() + ".load()";
 
         html += '<li class="nav-item">'
              +    '<a class="nav-link" href="' + href + '" '
@@ -175,8 +182,12 @@ function loadSection(section) {
 function hookRedirect() {
     var url = window.location.hash;
     var section = url.split('#')[1];
+    var view = window[section];
     console.log(section);
-    section == '' || typeof section === 'undefined' ? loadHome() : loadSection(section);
+    section == '' || typeof section === 'undefined' ? 
+        loadHome() :
+        view['load']();
+        //loadSection(section);
 
 }
 
@@ -186,5 +197,6 @@ function render() {
     $('#navbar').append(drawNavbar());
     $('#footer').append(drawFooter());
     loadWallpaper();
+    createViews();
     hookRedirect();
 }
