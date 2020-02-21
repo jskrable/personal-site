@@ -13,17 +13,26 @@ class Project {
     constructor(title, description) {
         this.title = title;
         this.description = description;
-        this.photo = 'css/images/projects/' + this.title + '.jpg';
+        this.photo = 'css/images/projects/' + this.title + '.gif';
         this.repo = 'https://github.com/jskrable/' + this.title;
     }
 
     card() {
-        html = '<div class="card bg-light mb-3">' +
-                 '<div id="project-title" class="card-header">' +
+/*        html = '<div class="card bg-light mb-3">' +
+                 '<div id="project-title" class="card-header text-bold">' +
                    this.title + 
                  '</div>' +
-                 '<p>' + this.description + '</p>'
-               '</div>'
+                 '<p class="py-1 px-1">' + this.description + '</p>'
+               '</div>';*/
+
+        html = '<div class="card bg-light mb-3" style="width: 18rem;">' +
+                // works only if GIF exists
+                 /*'<img src="' + this.photo '" class="card-img-top">' + */
+                 '<div class="card-body">' + 
+                   '<h5 id="project-title" class="card-title">' + this.title + '</h5>' +
+                   '<p class="card-text">' + this.description + '</p>' +
+                   '<a href="' + this.repo + '" target="_blank" class="btn btn-primary">View on Github</a>' +
+                 '</div></div>'
 
         return html;
     }
@@ -40,8 +49,30 @@ var projects = config.projects.map(
 
 function showCards(projects) {
 
-    var dest = $('#project-list-container');
-    dest.children().remove();
-    projects.forEach(x => {
-        dest.append(x.card())});
+    $('#loading').remove();
+    var dest = $('#project-list');
+    projects.forEach(
+        x => {
+            dest.append(x.card())
+        });
+
+    // Card hover animations
+    // NEED TO FIX TITLES ON THIS
+    dest.on('mouseenter', '.card', function() {
+        $(this).removeClass('bg-light');
+        $(this).addClass('bg-dark');
+        $(this).find('#project-title').addClass('text-white');
+    });
+
+    dest.on('mouseleave', '.card', function() {
+        $(this).removeClass('text-white bg-dark');
+        $(this).find('#project-title').removeClass('text-white');
+        $(this).addClass('bg-light');
+    });
 }
+
+
+// Get search query
+$( document ).ready(function() {
+    showCards(projects);    
+});
