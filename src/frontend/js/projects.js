@@ -41,8 +41,6 @@ function showCards(projectList) {
     });
 }
 
-
-// Get search query
 $( document ).ready(function() {
     showCards(projectList);    
 });

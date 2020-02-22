@@ -10,74 +10,57 @@ var config = siteInfo();
 
 // Get search query
 $( document ).ready(function() {
-	showPhotos();
+	listPhotos();
     
 });
 
 
 
-function showPhotos() {
-	listPhotos()
-		.then(x => {
-			console.log(x)
+function showPhotos(list) {
+	$('#loading').remove();
+    var dest = $('#photo-list');
+    list.map(item => new Photo(item)).forEach(
+		function(photo) {
+			dest.append(photo.card());
 		});
+    // hover function
+    var shadow = 'shadow-lg bg-yellow rounded';
+    dest.on('mouseenter', '.card', function() {
+        $(this).addClass(shadow);
+    });
+    dest.on('mouseleave', '.card', function() {
+        $(this).removeClass(shadow);
+    });
+
+    // ADD FUNCTION to popup full photo modal on click
 }
 
 function listPhotos() {
 
-	request = {
+	payload = {
 		"bucket": config.aws.s3.assets,
-		"path": "photos"
+		"path": "photos/thumbs"
 	}
     // Setup lambda call
     var params = {
         FunctionName: config.aws.lambda.listAssets,
         InvocationType: 'RequestResponse',
         LogType: 'Tail',
-        Payload: JSON.stringify(request)
+        Payload: JSON.stringify(payload)
         };
 
-    // this is a promise 
-    var response;
-    response = triggerLambda(params).then(function(error, data) {
-    	if (error) {
-    		console.log(error)
-    	} else {
-    		response = data;
-    	}
-    });
-    //console.log(response);
-    //photoList = JSON.parse(response['body']);
-    return response;
-}
-
-
-
-// REWRITE AND ABSTRACT SO WE CAN USE IN contact.js ALSO
-function triggerLambda(params) {
-
-    // Cognito pool credentials
-    AWS.config.update({
-        credentials: new AWS.CognitoIdentityCredentials({
-            IdentityPoolId: config.aws.cognito.poolID
-            }),
-          region: config.aws.region
-        });
-
-    // Config lambda
-    var lambda = new AWS.Lambda({region: config.aws.region});
-    // Initialize results
-    var results;
-    // Call lambda
-    lambda.invoke(params, function(err, data) {
-    	if (err) console.log(err, err.stack);
-    	else {
-    		if (this.data.StatusCode != 200) console.log('non 200 response');
-    		else {
-    			//console.log(JSON.parse(JSON.parse(this.data.Payload).body));
-    			results = JSON.parse(JSON.parse(this.data.Payload).body);
-    			return results;
-    		}
-    	}
-    });
+    triggerLambda(params, 'showPhotos');
+    /*var results;
+    var lambda = setupLambda();
+	request = lambda.invoke(params);
+    request.on('complete', function(response) {
+		if (response.error) {
+		// an error occurred, handle it
+			console.log(response.error)
+		} else {
+		// we can use response.data here
+			results = JSON.parse(JSON.parse(response.data.Payload).body);
+			showPhotos(results);
+		}
+		}).send();*/
 }

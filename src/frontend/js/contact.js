@@ -30,17 +30,10 @@ $( document ).ready(function() {
             Payload: '{"submission": ' + JSON.stringify(submission) + '}'
             };
         console.log(params);
-        triggerLambda(params);
-        
-    })
+        triggerLambda(params, 'displaySubmission');
+    });
 });
 
-    /*// Include enters for clicks
-    $('#search').keypress((e) => {
-    if ( e.which == 13 ) {
-        $('#submit').click();
-        }   
-    });*/
 
 
 
@@ -51,7 +44,7 @@ function displaySubmission(message) {
              '<div class="modal-dialog" role="document">' +
                '<div class="modal-content">' +
                  '<div class="modal-body">' +
-                   '<h3 class="text-center">' + message + '</h3>' +
+                   '<h3 class="text-center">Thanks for your submission. I\'ll be in contact with you soon.</h3>' +
                  '</div>' +
                  '<div class="row justify-content-center">' +
                    '<div class="modal-footer">' +
@@ -70,42 +63,6 @@ function displaySubmission(message) {
         $('#contact-email').val('');
         $('#contact-phone').val('');
         $('#contact-message').val('');
-    });
-
-}
-
-
-
-// REWRITE THIS...
-function triggerLambda(params) {
-
-    // Cognito pool credentials
-    AWS.config.update({
-        credentials: new AWS.CognitoIdentityCredentials({
-            IdentityPoolId: config.aws.cognito.poolID
-            }),
-          region: config.aws.region
-        });
-
-    // Config lambda
-    var lambda = new AWS.Lambda({region: config.aws.region});
-    // Initialize results
-    var results;
-    // Call lambda
-    // CATCH REAL ERRORS FROM THE LAMBDA HERE
-    lambda.invoke(params, function(error, data) {
-        if (error) {
-            //prompt(error);
-            window.alert(JSON.parse(error));
-        } else {    
-            window.message = JSON.parse(data.Payload);
-            console.log(message);
-            if (message != null) {
-                var response = message['body'];
-                console.log("Response: " + response);
-                displaySubmission('Thanks for your submission. I\'ll be in contact with you soon.');
-            }
-        }
     });
 
 }

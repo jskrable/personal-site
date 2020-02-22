@@ -67,13 +67,14 @@ class Photo {
     constructor(key) {
         this.key = key;
         this.bucket = config.aws.s3.assets;
-        this.url = ['https://',this.bucket,'s3.amazonaws.com/',this.key].join('')
+        this.thumb = ['https://',this.bucket,'.s3.amazonaws.com/',this.key].join('');
+        this.full = this.thumb.split('/').filter(x => x != 'thumbs').join('/');
     }
 
     card() {
         html = '<div class="card bg-light mb-3" style="width: 18rem;">' +
                 // works only if GIF exists
-                 '<img src="' + this.url + '" class="card-img-top">' + 
+                 '<img src="' + this.thumb + '" class="card-img-top">' + 
                 '</div>'
         return html;
     }
