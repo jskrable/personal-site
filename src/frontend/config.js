@@ -32,11 +32,12 @@ function siteInfo() {
 		    		"poolID": "us-east-1:67de684f-034b-4fa9-a22a-ad307422b6b0"
 		    	},
 		    	"s3": {
-		    		"site": "s3://jackskrable.com",
-		    		"assets": "s3://jackskrable-site-assets"
+		    		"site": "jackskrable.com",
+		    		"assets": "jackskrable-site-assets"
 		    	},
 		    	"lambda": {
-		    		"contact": "processContactForm"
+		    		"contact": "processContactForm",
+		    		"listAssets": "listS3Objects"
 		    	}
 		    },
 		    "projects": [
