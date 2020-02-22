@@ -17,7 +17,7 @@ class View {
 
     load() {
         console.log('removing existing content....');
-        $('#wallpaper').children().remove();
+        $('#content').children().remove();
         // get view html and load over wallpaper div
         console.log('loading ' + this.name + ' page...');
         //var path = this.name != 'home' ? 'views/' + this.name + '.html' : 'index.html'
@@ -26,7 +26,7 @@ class View {
                 .then((data) => {
                     //html += data;
                     //console.log(data);
-                    $('#wallpaper').append(data);
+                    $('#content').append(data);
                     return 0;
                 }).catch((error) =>  {
                     console.log(error)

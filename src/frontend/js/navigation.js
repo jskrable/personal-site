@@ -24,23 +24,6 @@ function createViews() {
 }
 
 
-
-
-
-/*function fetchHTML(path) {
-    var html = fetch(path).then(
-        (response) => response.text()).then(
-        (data) => {
-            //html += data;
-            //console.log(data);
-            return data;
-        });
-
-    return html;
-}*/
-
-
-
 // Create three basic divs for nav, content, and footer
 function baseContainers() {
     html = '<div id="header" class="fixed-top"></div>';//'<header id="header" class="fixed-top"></header>';
@@ -49,40 +32,19 @@ function baseContainers() {
     return html;
 }
 
-
-function loadWallpaper() {
-    $('#wallpaper').remove();
-    var wallpaper = '<div id="wallpaper" class="view" style="background-image: url(\'' 
-        + config.images.home
-        + '\'); background-repeat: no-repeat; background-size: cover; background-position: center center;">'
-    $('#content').append(wallpaper);
-}
-
-
 // change this to use fetchHTML
 function loadHome() {
     console.log('removing existing content....');
-    //$('#wallpaper').children().remove();
     console.log('loading home page...');
     // need to center headshot within column
     var info = '<div class="mask align-items-left"><div class="container py-5 px-5">'
-             + '<div class="row mt-5 px-5"><div class="col-md-6 white-text text-md-left">'
-             + '<img src="' + config.images.headshot + '" class="rounded-circle px-1 py-1">'
+             + '<div class="row mt-5 px-5"><div class="col-md-6 black-text text-md-left">'
+             + '<img src="' + config.images.headshot + '" class="rounded-circle shadow-lg px-1 py-1">'
              + '<h4 class="font-weight-bold py-3 px-1">'
              + config.bio
              + '</h4></div></div></div></div>';
     $('#content').append(info);
 }
-
-
-/*// USE THIS AS MODEL
-function loadContact() {
-    console.log('loading contact page...');
-    fetchHTML('views/contact.html')
-        .then((response) => 
-            $('#wallpaper').append(response));
-}*/
-
 
 // change this to use fetchHTML
 function drawNavbar() {
@@ -104,7 +66,7 @@ function drawNavbar() {
 
     // add this and close divs
     html = '<script type="text/javascript" src="js/active.js"></script>'
-         +   '<nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">'
+         +   '<nav class="navbar navbar-expand-lg navbar-light fixed-top scrolling-navbar">'
          +     '<a class="navbar-brand" onclick=home.load(); href="#"><strong>HOME</strong></a>'
          +     '<button class="navbar-toggler" type="button" data-toggle="collapse" '
          +       'data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" '
@@ -171,21 +133,6 @@ function drawFooter() {
 }
 
 
-/*function loadView(view) {
-
-    switch
-}*/
-
-
-/*function loadSection(section) {
-    var title = section.split('').map((x,i) => i == 0 ? x.toUpperCase() : x).join('');
-    var call = 'load' + title;
-    console.log(call);
-    console.log('removing existing content');
-    $('#wallpaper').children().remove();
-    window[call]();
-}*/
-
 function hookRedirect() {
     var url = window.location.hash;
     var section = url.split('#')[1];
@@ -201,7 +148,6 @@ function render() {
     $('.body').append(baseContainers());
     $('#header').append(drawNavbar());
     $('#footer').append(drawFooter());
-    loadWallpaper();
     createViews();
     hookRedirect();
 }
