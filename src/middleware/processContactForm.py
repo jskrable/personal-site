@@ -18,10 +18,7 @@ def lambda_handler(event, context):
     handles request to the lambda function from frontend. parses json request
     and sends to update_table function.
     """
-    #request = json.loads(event)
-    #submission = request['submission']
     submission = event['submission']
-
     # ACTUALLY USE RESPONSE HERE TO RETURN AN ERROR IF OCCURS
     update_table(submission)
     response = "Successful submission"

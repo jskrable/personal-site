@@ -8,18 +8,13 @@ description: lambda function to list all objects under an S3 path
 """
 
 import json
-import uuid
 import boto3
-import datetime
-
 
 def lambda_handler(event, context):
     """
     handles request to the lambda function from frontend. parses json request
     and sends to update_table function.
     """
-    #request = json.loads(event)
-    #submission = request['submission']
     bucket = event['bucket']
     path = event['path']
     response = list_all_objects(bucket, path)
