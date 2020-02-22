@@ -10,10 +10,18 @@ var config = siteInfo();
 
 // Get search query
 $( document ).ready(function() {
-	listPhotos()
+	showPhotos();
     
 });
 
+
+
+function showPhotos() {
+	listPhotos()
+		.then(x => {
+			console.log(x)
+		});
+}
 
 function listPhotos() {
 
@@ -28,9 +36,19 @@ function listPhotos() {
         LogType: 'Tail',
         Payload: JSON.stringify(request)
         };
-    console.log(params);
-    var photoList = triggerLambda(params);
-    return photoList;
+
+    // this is a promise 
+    var response;
+    response = triggerLambda(params).then(function(error, data) {
+    	if (error) {
+    		console.log(error)
+    	} else {
+    		response = data;
+    	}
+    });
+    //console.log(response);
+    //photoList = JSON.parse(response['body']);
+    return response;
 }
 
 
@@ -51,19 +69,15 @@ function triggerLambda(params) {
     // Initialize results
     var results;
     // Call lambda
-    // CATCH REAL ERRORS FROM THE LAMBDA HERE
-    lambda.invoke(params, function(error, data) {
-        if (error) {
-            console.log(error);
-        } else {    
-            window.message = JSON.parse(data.Payload);
-            console.log(message);
-            if (message != null) {
-                var response = message['body'];
-                console.log("Response: " + response);
-                return response;
-            }
-        }
+    lambda.invoke(params, function(err, data) {
+    	if (err) console.log(err, err.stack);
+    	else {
+    		if (this.data.StatusCode != 200) console.log('non 200 response');
+    		else {
+    			//console.log(JSON.parse(JSON.parse(this.data.Payload).body));
+    			results = JSON.parse(JSON.parse(this.data.Payload).body);
+    			return results;
+    		}
+    	}
     });
-
 }
