@@ -8,18 +8,20 @@
 var config = siteInfo();
 
 
-// Get search query
 $( document ).ready(function() {
 	listPhotos();
     
 });
 
+
+
+// TRY CAROUSEL??
 function fullPhotoModal(img) {
 
     html =  '<div id="full-photo-modal" class="modal fade h-100 d-flex flex-column ' + 
             'justify-content-center my-0" tabindex="-1" role="dialog" aria-hidden=' +
             '"true" display="none">' +
-              '<div class="modal-dialog" role="document">' +
+              '<div class="modal-dialog modal-lg" role="document">' +
                 '<div id="full-photo" class="modal-content">' +
                   img + '</div></div></div>';
 
@@ -76,17 +78,4 @@ function listPhotos() {
         };
 
     triggerLambda(params, 'showPhotos');
-    /*var results;
-    var lambda = setupLambda();
-	request = lambda.invoke(params);
-    request.on('complete', function(response) {
-		if (response.error) {
-		// an error occurred, handle it
-			console.log(response.error)
-		} else {
-		// we can use response.data here
-			results = JSON.parse(JSON.parse(response.data.Payload).body);
-			showPhotos(results);
-		}
-		}).send();*/
 }
