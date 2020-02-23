@@ -64,7 +64,8 @@ class Project {
 
 class Photo {
 
-    constructor(key) {
+    constructor(index, key) {
+        this.index = index;
         this.key = key;
         this.bucket = config.aws.s3.assets;
         this.thumb = ['https://',this.bucket,'.s3.amazonaws.com/',this.key].join('');
@@ -72,7 +73,7 @@ class Photo {
     }
 
     card() {
-        html = '<div class="card bg-light mb-3" style="width: 18rem;">' +
+        html = '<div id="thumb-' + this.index + '" class="card bg-light mb-3" style="width: 18rem;">' +
                 // works only if GIF exists
                  '<img src="' + this.thumb + '" class="card-img-top">' + 
                 '</div>'

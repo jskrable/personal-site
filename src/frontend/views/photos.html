@@ -1,12 +1,14 @@
 <script src="js/photos.js" type="text/javascript" charset="utf-8"></script>
-<div id="photos" class="container my-5 py-5 px-5">
+<div id="photos" class="container my-5 py-5 px-5 text-center">
 	<h3 class="py-4">Here are a few of the photos I've taken...</h3>
-	<div id="photo-list-container" class="container-fluid mt-3" style="margin-bottom: 100px;">
-    	<div id="loading" class="text-center py-3 px-3">
-    		<h4 class="mb-">Loading jobs...</h4>
+	<div id="photo-list-container" class="container-fluid justify-content-center mt-3" style="margin-bottom: 100px;">
+    	<div id="loading" class="spinner-border" role="status">
+    		<!-- <h4 class="mb-">Loading jobs...</h4> -->
+    		<span class="sr-only">Loading...</span>
     	</div>
         <div id="photo-list" class="card-columns">
         	<!-- photo cards go here -->
         </div>
     </div>
 </div>
+
