@@ -10,7 +10,6 @@ var config = siteInfo();
 var projectList = config.projects.map(
     x => {
         var key = x.title.split('-')[0].toLowerCase(); 
-        console.log(key);
         this[key] = new Project(x.title, x.description)
         return this[key]
     });
@@ -26,8 +25,8 @@ function showCards(projectList) {
             dest.append(x.card())
         });
 
+
     // Card hover animations
-    // NEED TO FIX TITLES ON THIS
     dest.on('mouseenter', '.card', function() {
         $(this).removeClass('bg-light');
         $(this).addClass('bg-dark');
@@ -39,9 +38,12 @@ function showCards(projectList) {
         $(this).find('#project-title').removeClass('text-white');
         $(this).addClass('bg-light');
     });
+
+    // xpand div to allow for scrolling
+    $('#content').css("height", $('#projects').height() + 100);
 }
 
 $( document ).ready(function() {
     showCards(projectList);    
-    $('#content').css("height", $('#projects').height() + 100);
+    
 });

@@ -24,23 +24,6 @@ function createViews() {
 }
 
 
-
-
-
-/*function fetchHTML(path) {
-    var html = fetch(path).then(
-        (response) => response.text()).then(
-        (data) => {
-            //html += data;
-            //console.log(data);
-            return data;
-        });
-
-    return html;
-}*/
-
-
-
 // Create three basic divs for nav, content, and footer
 function baseContainers() {
     html = '<div id="header" class="fixed-top"></div>';
@@ -75,15 +58,6 @@ function loadHome() {
              + '</h4></div></div></div></div>';
     $('#content').append(info);
 }
-
-
-/*// USE THIS AS MODEL
-function loadContact() {
-    console.log('loading contact page...');
-    fetchHTML('views/contact.html')
-        .then((response) => 
-            $('#wallpaper').append(response));
-}*/
 
 
 // change this to use fetchHTML
@@ -181,22 +155,6 @@ function drawFooter() {
     html += '</div>'
     return html;
 }
-
-
-/*function loadView(view) {
-
-    switch
-}*/
-
-
-/*function loadSection(section) {
-    var title = section.split('').map((x,i) => i == 0 ? x.toUpperCase() : x).join('');
-    var call = 'load' + title;
-    console.log(call);
-    console.log('removing existing content');
-    $('#wallpaper').children().remove();
-    window[call]();
-}*/
 
 function hookRedirect() {
     var url = window.location.hash;

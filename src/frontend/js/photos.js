@@ -20,7 +20,7 @@ function fullPhotoModal(img) {
     html =  '<div id="full-photo-modal" class="modal fade h-100 d-flex flex-column ' + 
             'justify-content-center my-0" tabindex="-1" role="dialog" aria-hidden=' +
             '"true" display="none">' +
-              '<div class="modal-dialog modal-lg" role="document">' +
+              '<div class="modal-dialog modal-xl" role="document">' +
                 '<div id="full-photo" class="modal-content">' +
                   img + '</div></div></div>';
 
@@ -46,17 +46,17 @@ function showPhotos(list) {
 		});
     // hover function
     var shadow = 'shadow-lg bg-yellow rounded';
-    $('.footer').on('mouseenter', '.img', function() {
+    dest.on('mouseenter', '.card', function() {
         $(this).addClass(shadow);
     });
-    $('.footer').on('mouseleave', '.img', function() {
+    dest.on('mouseleave', '.card', function() {
         $(this).removeClass(shadow);
     });
 
     // ADD FUNCTION to popup full photo modal on click
     dest.on('click', '.card', function() {
         var idx = $(this).attr('id').split('-')[1];
-        var img = '<img src="' + photoList[idx].full + '" class="img-fluid rounded-sm" ' +
+        var img = '<img src="' + photoList[idx].full + '" class="img-fluid" ' +
                   'alt="' + photoList[idx].key + '">'
         fullPhotoModal(img);
     });
