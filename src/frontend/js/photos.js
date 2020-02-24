@@ -10,7 +10,6 @@ var config = siteInfo();
 
 $( document ).ready(function() {
 	listPhotos();
-    
 });
 
 
@@ -47,10 +46,10 @@ function showPhotos(list) {
 		});
     // hover function
     var shadow = 'shadow-lg bg-yellow rounded';
-    dest.on('mouseenter', '.card', function() {
+    $('.footer').on('mouseenter', '.img', function() {
         $(this).addClass(shadow);
     });
-    dest.on('mouseleave', '.card', function() {
+    $('.footer').on('mouseleave', '.img', function() {
         $(this).removeClass(shadow);
     });
 
@@ -60,8 +59,12 @@ function showPhotos(list) {
         var img = '<img src="' + photoList[idx].full + '" class="img-fluid rounded-sm" ' +
                   'alt="' + photoList[idx].key + '">'
         fullPhotoModal(img);
-    })
+    });
+
+    // resize content div to allow scroll
+    $('#content').css("height", $('#photos').height() + 100);
 }
+
 
 function listPhotos() {
 

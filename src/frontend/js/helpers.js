@@ -34,9 +34,11 @@ function triggerLambda(params, destination) {
         } else {
         // we can use response.data here
             results = JSON.parse(JSON.parse(response.data.Payload).body);
-            console.log(results)
+            //console.log(results)
             window[destination](results);
+            return results;
         }
         }).send();
+
 
 }

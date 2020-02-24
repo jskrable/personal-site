@@ -43,4 +43,5 @@ function showCards(projectList) {
 
 $( document ).ready(function() {
     showCards(projectList);    
+    $('#content').css("height", $('#projects').height() + 100);
 });

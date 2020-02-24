@@ -43,8 +43,10 @@ function createViews() {
 
 // Create three basic divs for nav, content, and footer
 function baseContainers() {
-    html = '<div id="header" class="fixed-top"></div>';//'<header id="header" class="fixed-top"></header>';
-    html += '<div id="content" class="body"></div>';
+    html = '<div id="header" class="fixed-top"></div>';
+    // height: 100% here fixes wallpaper cutting, but kills scrolling
+    //html += '<div id="content" style="height: 100%;"></div>';
+    html += '<div id="content"></div>';
     html += '<footer><div id="footer" class="fixed-bottom d-flex justify-content-center"></div></footer>';
     return html;
 }
@@ -153,6 +155,16 @@ function drawFooter() {
             );
         html += '</div>';
         return html;
+
+    var shadow = 'shadow-lg bg-yellow rounded';
+    var dest = $('#footer');
+    dest.on('mouseenter', '.a', function() {
+        $(this).addClass(shadow);
+    });
+    dest.on('mouseleave', '.a', function() {
+        $(this).removeClass(shadow);
+    });
+
     }
 
     function drawCopyright() {
