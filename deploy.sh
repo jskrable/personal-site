@@ -9,6 +9,7 @@ middle="$dir/src/middleware/"
 # sync frontend with s3 bucket
 aws s3 sync $front s3://jackskrable.com/
 
+# ADD PHOTOS FUNCTION HERE
 # zip up middleware function
 cd ./src/middleware
 zip "$dir/package" processContactForm.py
