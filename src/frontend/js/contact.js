@@ -10,7 +10,7 @@ var fields = ['name','email','phone','message']
 
 // Get search query
 $( document ).ready(function() {
-    $('#content').css("height","100%");
+    //$('#content').css("height","100%");
     
     $('#submit').click((e) => {
         submission = {

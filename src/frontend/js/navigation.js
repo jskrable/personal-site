@@ -6,6 +6,7 @@
 
 // Retrieve basic site configuration info
 var config = siteInfo();
+resizeBody();
 
 // jQuery called on page load
 $(function() {
@@ -156,14 +157,29 @@ function drawFooter() {
     return html;
 }
 
-function hookRedirect() {
+
+function getHook() {
     var url = window.location.hash;
     var section = url.split('#')[1];
+    return section;
+}
+
+function hookRedirect() {
+    var section = getHook();
     var view = window[section];
     console.log(section);
     section == '' || typeof section === 'undefined' ? 
         home.load() :
         view['load']();
+}
+
+
+function resizeBody() {
+    $(".body").on('DOMSubtreeModified', "#content", function() {
+        var section = $('#' + getHook());
+        section == '' || typeof section === 'undefined' ? $('#home') : section;
+        $(this).css("height", section.height() + 100);
+    });
 }
 
 // clear content on link click or refresh here

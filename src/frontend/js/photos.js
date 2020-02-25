@@ -60,9 +60,6 @@ function showPhotos(list) {
                   'alt="' + photoList[idx].key + '">'
         fullPhotoModal(img);
     });
-
-    // resize content div to allow scroll
-    $('#content').css("height", $('#photos').height() + 100);
 }
 
 
