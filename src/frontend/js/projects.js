@@ -39,11 +39,12 @@ function showCards(projectList) {
         $(this).addClass('bg-light');
     });
 
-    // xpand div to allow for scrolling
-    $('#content').css("height", $('#projects').height() + 100);
 }
 
 $( document ).ready(function() {
     showCards(projectList);    
-    
+    $('#content').change(function() {
+        console.log('content change')
+        $(this).css("height", $('#projects').height() + 100);
+    })
 });

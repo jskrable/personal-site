@@ -11,7 +11,7 @@ function siteInfo() {
 		    "title": "Jack Skrable's Personal Site",
 		    "author": "Jack Skrable",
 		    "email": "j.skrable@gmail.com",
-		    "bio": "BIO BIO BIO bio bio bio BIO BIO BIO bio bio bio BIO BIO BIO bio bio bio BIO BIO BIO bio bio bio BIO BIO BIO bio bio bio BIO BIO BIO bio bio bio BIO BIO BIO bio bio bio",
+		    "bio": "A data engineer and integration developer with 5 years of professional experience building and using ETL processes and RESTful APIs. Recently completed a Master's degree in Computer Science taking classes part-time, with a focus on machine learning, big data processing, and cryptography. In my free time, I like to take photos, cook, play basketball, and go to concerts.",
 		    "socials": {
 		        "github": "https://github.com/jskrable",
 		        "linkedin": "https://www.linkedin.com/in/jackskrable/"

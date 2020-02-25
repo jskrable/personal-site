@@ -130,15 +130,6 @@ function drawFooter() {
         html += '</div>';
         return html;
 
-    var shadow = 'shadow-lg bg-yellow rounded';
-    var dest = $('#footer');
-    dest.on('mouseenter', '.a', function() {
-        $(this).addClass(shadow);
-    });
-    dest.on('mouseleave', '.a', function() {
-        $(this).removeClass(shadow);
-    });
-
     }
 
     function drawCopyright() {
@@ -153,6 +144,15 @@ function drawFooter() {
     html += drawLinks();
     html += drawCopyright();
     html += '</div>'
+
+    var shadow = 'shadow-lg bg-yellow rounded';
+    var dest = $('#footer');
+    dest.on('mouseenter', '.a', function() {
+        $(this).addClass(shadow);
+    });
+    dest.on('mouseleave', '.a', function() {
+        $(this).removeClass(shadow);
+    });
     return html;
 }
 
