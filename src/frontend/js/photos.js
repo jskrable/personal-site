@@ -25,7 +25,7 @@ function fullPhotoModal(img) {
                   img + '</div></div></div>';
 
     // Add modal html to page
-    $('#wallpaper').append(html);
+    $('#content').append(html);
     // Show modal
     $('#full-photo-modal').modal()
 

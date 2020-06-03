@@ -6,7 +6,7 @@
 
 // Retrieve basic site configuration info
 var config = siteInfo();
-resizeBody();
+//resizeBody();
 
 // jQuery called on page load
 $(function() {
@@ -35,7 +35,7 @@ function baseContainers() {
     return html;
 }
 
-// change this to use fetchHTML
+/*// change this to use fetchHTML
 function loadHome() {
     console.log('removing existing content....');
     console.log('loading home page...');
@@ -47,7 +47,7 @@ function loadHome() {
              + config.bio
              + '</h4></div></div></div></div>';
     $('#content').append(info);
-}
+}*/
 
 
 // change this to use fetchHTML
@@ -68,6 +68,7 @@ function drawNavbar() {
         return html;
     }
 
+    // change navbar colors here please
     // add this and close divs
     html = '<script type="text/javascript" src="js/active.js"></script>'
          +   '<nav class="navbar navbar-expand-lg navbar-light fixed-top scrolling-navbar">'
@@ -163,13 +164,13 @@ function hookRedirect() {
 }
 
 
-function resizeBody() {
+/*function resizeBody() {
     $(".body").on('DOMSubtreeModified', "#content", function() {
         var section = $('#' + getHook());
         section == '' || typeof section === 'undefined' ? $('#home') : section;
         $(this).css("height", section.height() + 100);
     });
-}
+}*/
 
 // clear content on link click or refresh here
 function render() {

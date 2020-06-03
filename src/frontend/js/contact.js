@@ -54,7 +54,7 @@ function displaySubmission(message) {
             '</div></div></div></div></div>';
 
     // Add modal html to page
-    $('#wallpaper').append(html);
+    $('#content').append(html);
     // Show modal
     $('#response-modal').modal()
 
