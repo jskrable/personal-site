@@ -26,28 +26,15 @@ function createViews() {
 
 
 // Create three basic divs for nav, content, and footer
+// move this into actual header and footers
 function baseContainers() {
-    html = '<div id="header" class="fixed-top"></div>';
+    html = '<header><div id="header"></div></header>';
     // height: 100% here fixes wallpaper cutting, but kills scrolling
     //html += '<div id="content" style="height: 100%;"></div>';
     html += '<div id="content"></div>';
-    html += '<footer><div id="footer" class="fixed-bottom d-flex justify-content-center"></div></footer>';
+    html += '<footer><div id="footer" class="d-flex justify-content-center"></div></footer>';
     return html;
 }
-
-/*// change this to use fetchHTML
-function loadHome() {
-    console.log('removing existing content....');
-    console.log('loading home page...');
-    // need to center headshot within column
-    var info = '<div class="mask align-items-left"><div class="container py-5 px-5">'
-             + '<div class="row mt-5 px-5"><div class="col-md-6 black-text text-md-left">'
-             + '<img src="' + config.images.headshot + '" class="rounded-circle shadow-lg px-1 py-1">'
-             + '<h4 class="font-weight-bold py-3 px-1">'
-             + config.bio
-             + '</h4></div></div></div></div>';
-    $('#content').append(info);
-}*/
 
 
 // change this to use fetchHTML
@@ -71,7 +58,7 @@ function drawNavbar() {
     // change navbar colors here please
     // add this and close divs
     html = '<script type="text/javascript" src="js/active.js"></script>'
-         +   '<nav class="navbar navbar-expand-lg navbar-light fixed-top scrolling-navbar">'
+         +   '<nav class="navbar navbar-expand-lg navbar-light">'
          +     '<a class="navbar-brand" onclick=home.load(); href="#"><strong>HOME</strong></a>'
          +     '<button class="navbar-toggler" type="button" data-toggle="collapse" '
          +       'data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" '
@@ -136,6 +123,7 @@ function drawFooter() {
     html += drawCopyright();
     html += '</div>'
 
+    // SHADOW NOT WORKING
     var shadow = 'shadow-lg bg-yellow rounded';
     var dest = $('#footer');
     dest.on('mouseenter', '.a', function() {
