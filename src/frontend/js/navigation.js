@@ -58,7 +58,7 @@ function drawNavbar() {
     // change navbar colors here please
     // add this and close divs
     html = '<script type="text/javascript" src="js/active.js"></script>'
-         +   '<nav class="navbar navbar-expand-lg navbar-light">'
+         +   '<nav class="navbar navbar-expand-lg navbar-light bg-light">'
          +     '<a class="navbar-brand" onclick=home.load(); href="#"><strong>HOME</strong></a>'
          +     '<button class="navbar-toggler" type="button" data-toggle="collapse" '
          +       'data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" '
