@@ -47,8 +47,8 @@ class Project {
 
     card() {
         //console.log(this.photo) 
-
-        html = '<div class="card bg-light" style="width: 18rem;">' +
+        // removed width 18 style
+        html = '<div class="card bg-light">' +
                 // works only if GIF exists
                  '<img src="' + this.photo + '" class="card-img-top">' + 
                  '<div class="card-body">' + 
