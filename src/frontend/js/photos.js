@@ -17,15 +17,17 @@ $( document ).ready(function() {
 // TRY CAROUSEL??
 function fullPhotoModal(img) {
 
-    html =  '<div id="full-photo-modal" class="modal fade h-100 d-flex flex-column ' + 
+    html =  '<div id="full-photo-modal" class="modal fade h-80 d-flex flex-column ' + 
             'justify-content-center my-0" tabindex="-1" role="dialog" aria-hidden=' +
             '"true" display="none">' +
+              '<button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+                '<span aria-hidden="true">&times;</span></button>' +
               '<div class="modal-dialog modal-xl" role="document">' +
                 '<div id="full-photo" class="modal-content">' +
                   img + '</div></div></div>';
 
     // Add modal html to page
-    $('#wallpaper').append(html);
+    $('#content').append(html);
     // Show modal
     $('#full-photo-modal').modal()
 
