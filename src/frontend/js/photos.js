@@ -10,6 +10,12 @@ var config = siteInfo();
 
 $( document ).ready(function() {
 	listPhotos();
+
+    $('#scroll-top-button').click((e) => {
+        console.log('back to the dang top')
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+    });
 });
 
 
