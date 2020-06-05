@@ -16,7 +16,7 @@ $( document ).ready(function() {
     // FIX ALIGNMENT within column
     // THIS SHIT IS NASTY AS HELL DOG
     var html = '<img src="' + config.images.headshot + 
-    		   '" class="rounded-circle px-3 py-1 ml-4" alt="Jack Skrable">' +
-               '<h4 class="py-3 px-1 text-center">' + config.bio + '</h4>' +
+    		   '" class="rounded-circle px-3 py-1" alt="Jack Skrable">' +
+               '<h4 class="py-3 px-1 text-center">' + config.bio + '</h4>';
     $('#home').append(html);
 });
