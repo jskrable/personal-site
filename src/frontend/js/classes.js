@@ -1,7 +1,7 @@
 /*  classes.js
     jack skrable
     02-20-2020
-    class definition for a view
+    class definitions
 */
 
 // Retrieve basic site configuration info
@@ -9,6 +9,11 @@ var config = siteInfo();
 
 
 class View {
+    /*
+        class definition for view. contains a constructor and load() method.
+        load uses fetch to grab the associated html from src/frontend/views
+        and shoves it into the content div.
+    */
 
     constructor(name) {
         this.name = name;
@@ -37,6 +42,10 @@ class View {
 
 
 class Project {
+    /*
+        class definition for a project. contains a constructor and card() method.
+        card creates a bootstrap card in html for displaying the project details.
+    */
 
     constructor(title, description) {
         this.title = title;
@@ -63,7 +72,11 @@ class Project {
 
 
 class Photo {
-
+    /*
+        class definition for a photo. contains a constructor and card() method.
+        card creates a bootstrap card in html for displaying the thumbnail.
+    */
+    
     constructor(index, key) {
         this.index = index;
         this.key = key;
