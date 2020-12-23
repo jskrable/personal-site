@@ -48,7 +48,7 @@ class Project {
     card() {
         //console.log(this.photo) 
 
-        html = '<div class="card bg-light mb-3 ml-5 mr-5" style="width: 18rem;">' +
+        html = '<div class="card bg-light">' +
                 // works only if GIF exists
                  '<img src="' + this.photo + '" class="card-img-top">' + 
                  '<div class="card-body">' + 
@@ -73,7 +73,7 @@ class Photo {
     }
 
     card() {
-        html = '<div id="thumb-' + this.index + '" class="card bg-light mb-3" style="width: 18rem;">' +
+        html = '<div id="thumb-' + this.index + '" class="card bg-light mb-3">' +
                 // works only if GIF exists
                  '<img src="' + this.thumb + '" class="card-img-top">' + 
                 '</div>'

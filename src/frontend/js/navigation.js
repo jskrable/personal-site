@@ -31,14 +31,14 @@ function baseContainers() {
     // height: 100% here fixes wallpaper cutting, but kills scrolling
     //html += '<div id="content" style="height: 100%;"></div>';
     html += '<div id="content"></div>';
-    html += '<footer><div id="footer" class="fixed-bottom d-flex justify-content-center"></div></footer>';
+    html += '<footer><div id="footer" class="fixed-bottom d-flex justify-content-center py-2" style="background-color: #bdbfbe;"></div></footer>';
     return html;
 }
 
 
 function loadWallpaper() {
     $('#wallpaper').remove();
-    var wallpaper = '<div id="wallpaper" class="view" style="background-image: url(\'' 
+    var wallpaper = '<div id="wallpaper" class="view-responsive" style="background-image: url(\'' 
         + config.images.home
         + '\'); background-repeat: no-repeat; background-size: cover; background-position: center center;">'
     $('#content').append(wallpaper);
@@ -80,8 +80,9 @@ function drawNavbar() {
     }
 
     // add this and close divs
+    // navbar color here in <nav>
     html = '<script type="text/javascript" src="js/active.js"></script>'
-         +   '<nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">'
+         +   '<nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar" style="background-color: #4f5450;">'
          +     '<a class="navbar-brand" onclick=home.load(); href="#"><strong>HOME</strong></a>'
          +     '<button class="navbar-toggler" type="button" data-toggle="collapse" '
          +       'data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" '

@@ -39,6 +39,8 @@ function showCards(projectList) {
         $(this).addClass('bg-light');
     });
 
+    
+
 }
 
 $( document ).ready(function() {

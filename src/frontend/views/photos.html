@@ -1,25 +1,24 @@
 <script src="js/photos.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/aws-sdk.min.js"></script>
 <div id="photos" class="container my-5 py-5 px-5 text-center">
-	<h3 class="py-4">Here are a few of the photos I've taken...</h3>
-	<div id="photo-list-container" class="container-fluid justify-content-center mt-3" style="margin-bottom: 100px;">
-    	<div id="loading" class="spinner-border" role="status">
-    		<!-- <h4 class="mb-">Loading jobs...</h4> -->
-    		<span class="sr-only">Loading...</span>
-    	</div>
-        <div id="photo-list" class="card-columns">
-        	<!-- photo cards go here -->
+    <h3 class="py-4">Here are a few of the photos I've taken...</h3>
+    <div id="photo-list-container" class="container-fluid justify-content-center mt-3" style="margin-bottom: 100px;">
+        <div id="loading" class="spinner-border" role="status">
+            <!-- <h4 class="mb-">Loading jobs...</h4> -->
+            <span class="sr-only">Loading...</span>
         </div>
-
+        <div id="photo-list" class="card-columns">
+            <!-- photo cards go here -->
+        </div>
         <!-- <div class="row">
-		  <div class="col-md-12">
-
-		    <div id="mdb-lightbox-ui"></div>
-
-		    <div class="mdb-lightbox no-margin">
-		    </div>
-		  </div>
-		</div> -->
+                    <div class="col-md-12">
+                        <div id="mdb-lightbox-ui"></div>
+                        <div class="mdb-lightbox no-margin">
+                        </div>
+                    </div>
+        </div> -->
+        <div id='scroll-button'>
+            <button type="button" id="scroll-top-button" class="btn btn-dark invisible">Back to Top</button>
+        </div>
     </div>
 </div>
-
