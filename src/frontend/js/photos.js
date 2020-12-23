@@ -44,6 +44,8 @@ function fullPhotoModal(img) {
 
 function showPhotos(list) {
 	$('#loading').remove();
+    $('#scroll-top-button').removeClass('invisible');
+    $('#scroll-top-button').addClass('visible');
     var dest = $('#photo-list');
     var photoList = list.map((item, index) => new Photo(index, item));
     photoList.forEach(

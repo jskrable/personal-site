@@ -6,11 +6,12 @@
 
 // Retrieve basic site configuration info
 var config = siteInfo();
-resizeBody();
+//resizeBody();
 
 // jQuery called on page load
 $(function() {
     render();
+    //resizeBody();
     // uncomment for construction page default
     //$('.body').load('views/construction.html');
 });
@@ -176,6 +177,7 @@ function hookRedirect() {
 
 
 function resizeBody() {
+    console.log('resizing');
     $(".body").on('DOMSubtreeModified', "#content", function() {
         var section = $('#' + getHook());
         section == '' || typeof section === 'undefined' ? $('#home') : section;
