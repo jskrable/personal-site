@@ -47,19 +47,19 @@ function loadWallpaper() {
 
 
 // change this to use fetchHTML
-function loadHome() {
+/*function loadHome() {
     console.log('removing existing content....');
     //$('#wallpaper').children().remove();
     console.log('loading home page...');
     // need to center headshot within column
     var info = '<div class="mask align-items-left"><div class="container py-5 px-5">'
-             + '<div class="row mt-5 px-5"><div class="col-md-6 white-text text-md-left">'
+             + '<div class="mt-5 px-5"><div class="white-text text-md-left">'
              + '<img src="' + config.images.headshot + '" class="rounded-circle px-1 py-1">'
              + '<h4 class="font-weight-bold py-3 px-1">'
              + config.bio
              + '</h4></div></div></div></div>';
     $('#content').append(info);
-}
+}*/
 
 
 // change this to use fetchHTML
@@ -169,21 +169,21 @@ function getHook() {
 function hookRedirect() {
     var section = getHook();
     var view = window[section];
-    console.log(section);
+    //console.log(section);
     section == '' || typeof section === 'undefined' ? 
         home.load() :
         view['load']();
 }
 
 
-function resizeBody() {
+/*function resizeBody() {
     console.log('resizing');
     $(".body").on('DOMSubtreeModified', "#content", function() {
         var section = $('#' + getHook());
         section == '' || typeof section === 'undefined' ? $('#home') : section;
         $(this).css("height", section.height() + 100);
     });
-}
+}*/
 
 // clear content on link click or refresh here
 function render() {

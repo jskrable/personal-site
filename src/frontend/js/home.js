@@ -1,7 +1,7 @@
 /*  home.js
     jack skrable
     02-21-2020
-    class definition for a project
+    script to populate and display homepage
 */
 
 // Retrieve basic site configuration info

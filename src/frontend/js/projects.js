@@ -15,7 +15,9 @@ var projectList = config.projects.map(
     });
 
 
-// SCROLL NOT ALLOWED ON PROJECT VIEW FOR SOME REASON
+// ADD BIG POPUP MODAL WHEN CLICKING ON CARD
+
+
 function showCards(projectList) {
 
     $('#loading').remove();
@@ -38,6 +40,12 @@ function showCards(projectList) {
         $(this).find('#project-title').removeClass('text-white');
         $(this).addClass('bg-light');
     });
+
+    // card click function
+    /*dest.on('click', '.card', function() {
+        //$(this).find('#project-title').removeClass('text-white');
+        console.log('click')
+    });*/
 
     
 
