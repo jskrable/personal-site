@@ -168,9 +168,14 @@ function hookRedirect() {
     var section = getHook();
     var view = window[section];
     //console.log(section);
-    section == '' || typeof section === 'undefined' ?
-        home.load() :
+    if (section == '' || typeof section === 'undefined') {
+        home.load(() => home.resize());
+        //home.resize();
+    } else {
         view['load']();
+        //view['resize']();
+    }
+    resizeBody();
 }
 
 
@@ -190,6 +195,19 @@ function resizeBody() {
             }
         }
     });
+/*    if ($(window).height() > $('.body').height()) {
+            var hook = getHook();
+            if (hook == 'contact' || hook == '' || typeof hook === 'undefined') {
+                console.log('resizing');
+                var height = $(window).height() - $('#footer').height();
+                $('.body').css("height", height);
+                $('#wallpaper').css("height", height);
+            }
+        } else {
+            console.log('removing custom resize')
+            $('.body').css("height", '');
+            $('#wallpaper').css("height", '');
+        }*/
 }
 
 // clear content on link click or refresh here
@@ -200,5 +218,4 @@ function render() {
     loadWallpaper();
     createViews();
     hookRedirect();
-    resizeBody();
 }

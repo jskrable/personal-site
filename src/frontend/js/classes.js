@@ -27,6 +27,7 @@ class View {
                     //html += data;
                     //console.log(data);
                     $('#wallpaper').append(data);
+                    //this.resize();
                     return 0;
                 }).catch((error) =>  {
                     console.log(error)
