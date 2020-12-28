@@ -19,8 +19,9 @@ $(function() {
 
 function createViews() {
     config.sections.forEach(x => {
-        let key = x.toLowerCase(); 
-        this[key] = new View(key)});
+        let key = x.toLowerCase();
+        this[key] = new View(key)
+    });
 
     home = new View('home');
 }
@@ -39,9 +40,9 @@ function baseContainers() {
 
 function loadWallpaper() {
     $('#wallpaper').remove();
-    var wallpaper = '<div id="wallpaper" class="view-responsive" style="background-image: url(\'' 
-        + config.images.home
-        + '\'); background-repeat: no-repeat; background-size: cover; background-position: center center;">'
+    var wallpaper = '<div id="wallpaper" class="view-responsive" style="background-image: url(\'' +
+        config.images.home +
+        '\'); background-repeat: no-repeat; background-size: cover; background-position: center center;">'
     $('#content').append(wallpaper);
 }
 
@@ -71,27 +72,27 @@ function drawNavbar() {
         var href = '#' + section.toLowerCase();
         var click = section.toLowerCase() + ".load()";
 
-        html += '<li class="nav-item">'
-             +    '<a class="nav-link" href="' + href + '" '
-             +      'onclick="' + click + '" '
-             +      'id="' + id + '">' + section + '</a>'
-             +  '</li>';
+        html += '<li class="nav-item">' +
+            '<a class="nav-link" href="' + href + '" ' +
+            'onclick="' + click + '" ' +
+            'id="' + id + '">' + section + '</a>' +
+            '</li>';
 
         return html;
     }
 
     // add this and close divs
     // navbar color here in <nav>
-    html = '<script type="text/javascript" src="js/active.js"></script>'
-         +   '<nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar" style="background-color: #4f5450;">'
-         +     '<a class="navbar-brand" onclick=home.load(); href="#"><strong>HOME</strong></a>'
-         +     '<button class="navbar-toggler" type="button" data-toggle="collapse" '
-         +       'data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" '
-         +       'aria-expanded="false" aria-label="Toggle navigation">'
-         +       '<span class="navbar-toggler-icon"></span>'
-         +     '</button>'
-         +     '<div class="collapse navbar-collapse" id="navbarSupportedContent">'
-         +       '<ul class="navbar-nav mr-auto">';
+    html = '<script type="text/javascript" src="js/active.js"></script>' +
+        '<nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar" style="background-color: #4f5450;">' +
+        '<a class="navbar-brand" onclick=home.load(); href="#"><strong>HOME</strong></a>' +
+        '<button class="navbar-toggler" type="button" data-toggle="collapse" ' +
+        'data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" ' +
+        'aria-expanded="false" aria-label="Toggle navigation">' +
+        '<span class="navbar-toggler-icon"></span>' +
+        '</button>' +
+        '<div class="collapse navbar-collapse" id="navbarSupportedContent">' +
+        '<ul class="navbar-nav mr-auto">';
 
     // use jquery here to insert section links?
     config.sections.forEach(x => html += drawLinks(x));
@@ -105,31 +106,28 @@ function drawNavbar() {
 
 function drawFooter() {
     // Social media links for footer
-    var links = [
-        {
-            "href": config.socials.linkedin,
-            "img": "css/images/linkedin-logo.png"
-        },
-        {
-            "href": config.socials.github,
-            "img": "css/images/github-logo.png"
-        },
-        {
-            "href": "mailto:" + config.email,
-            "img": "css/images/email.png"
-        }
-    ];
+    var links = [{
+        "href": config.socials.linkedin,
+        "img": "css/images/linkedin-logo.png"
+    }, {
+        "href": config.socials.github,
+        "img": "css/images/github-logo.png"
+    }, {
+        "href": "mailto:" + config.email,
+        "img": "css/images/email.png"
+    }];
 
     function drawLinks() {
         var html = '<div class="row justify-content-center">';
         links.forEach(x =>
             html += '<div class="col-auto px-1">'
-                // add link hover highlight here
-                  +   '<a href="' + x['href'] + '" target="_blank">'
-                  +     '<img src=' + x['img'] + ' width=20 height=20>' 
-                  +   '</a>'
-                  + '</div>'
-            );
+            // add link hover highlight here
+            +
+            '<a href="' + x['href'] + '" target="_blank">' +
+            '<img src=' + x['img'] + ' width=20 height=20>' +
+            '</a>' +
+            '</div>'
+        );
         html += '</div>';
         return html;
 
@@ -137,9 +135,9 @@ function drawFooter() {
 
     function drawCopyright() {
         year = new Date().getFullYear();
-        cp_html = '<div class="row justify-content-center">'
-                    + ['<p>&copy;', config.author, year, '</p>'].join(' ')
-                + '</div>'
+        cp_html = '<div class="row justify-content-center">' +
+            ['<p>&copy;', config.author, year, '</p>'].join(' ') +
+            '</div>'
         return cp_html;
     }
 
@@ -170,20 +168,29 @@ function hookRedirect() {
     var section = getHook();
     var view = window[section];
     //console.log(section);
-    section == '' || typeof section === 'undefined' ? 
+    section == '' || typeof section === 'undefined' ?
         home.load() :
         view['load']();
 }
 
 
-/*function resizeBody() {
-    console.log('resizing');
+function resizeBody() {
     $(".body").on('DOMSubtreeModified', "#content", function() {
-        var section = $('#' + getHook());
-        section == '' || typeof section === 'undefined' ? $('#home') : section;
-        $(this).css("height", section.height() + 100);
+        if ($(window).height() > $('.body').height()) {
+            var hook = getHook();
+            if (hook == 'contact' || hook == '' || typeof hook === 'undefined') {
+                //var section = $('#' + hook);
+                console.log('resizing');
+                var height = $(window).height() - $('#footer').height();
+                $(this).css("height", height);
+                $('#wallpaper').css("height", height);
+            } else {
+                $(this).css("height", '');
+                $('#wallpaper').css("height", '');
+            }
+        }
     });
-}*/
+}
 
 // clear content on link click or refresh here
 function render() {
@@ -193,4 +200,5 @@ function render() {
     loadWallpaper();
     createViews();
     hookRedirect();
+    resizeBody();
 }
