@@ -195,19 +195,6 @@ function resizeBody() {
             }
         }
     });
-/*    if ($(window).height() > $('.body').height()) {
-            var hook = getHook();
-            if (hook == 'contact' || hook == '' || typeof hook === 'undefined') {
-                console.log('resizing');
-                var height = $(window).height() - $('#footer').height();
-                $('.body').css("height", height);
-                $('#wallpaper').css("height", height);
-            }
-        } else {
-            console.log('removing custom resize')
-            $('.body').css("height", '');
-            $('#wallpaper').css("height", '');
-        }*/
 }
 
 // clear content on link click or refresh here
