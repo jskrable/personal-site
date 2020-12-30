@@ -105,27 +105,39 @@ function carouselModal(carousel) {
 
 function createCarousel(list) {
 
-    html = '<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">'
+    container = '<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">'
     
     indicators = '<ol class="carousel-indicators">'
     items = '<div class="carousel-inner">'
 
     list.forEach(
-        function(photo) {
-            indicators += photo.indicator('photo-carousel');
-            items += photo.item();
+        function(photo, index) {
+            if (index == 0) {
+                console.log(photo)
+                console.log(index)
+                console.log('setting ' + photo.key + ' to active')
+                indicators += photo.indicator(true);
+                items += photo.item(true);
+            } else {
+                indicators += photo.indicator(false);
+                items += photo.item(false);
+            }
         });
 
     indicators += '</ol>'
     items += '</div>'
 
-    controls = '<a class="carousel-control-prev" role="button" data-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="sr-only">Previous</span></a><a class="carousel-control-next" role="button" data-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="sr-only">Next</span></a>'
+    controls = '<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">    <span class="carousel-control-prev-icon" aria-hidden="true"></span>    <span class="sr-only">Previous</span>  </a>  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">    <span class="carousel-control-next-icon" aria-hidden="true"></span>    <span class="sr-only">Next</span>  </a>'
 
-    html += indicators + items + controls + '</div>'
+    html = container + indicators + items + controls + '</div>'
 
     carousel = html;
 
     testHTML = '<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">  <ol class="carousel-indicators">    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>  </ol>  <div class="carousel-inner">    <div class="carousel-item active">      <img class="d-block w-100" src="/css/images/tower.jpg" alt="First slide">    </div>    <div class="carousel-item">      <img class="d-block w-100" src="/css/images/tower.jpg" alt="Second slide">    </div>    <div class="carousel-item">      <img class="d-block w-100" src="/css/images/tower.jpg" alt="Third slide">    </div>  </div>  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">    <span class="carousel-control-prev-icon" aria-hidden="true"></span>    <span class="sr-only">Previous</span>  </a>  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">    <span class="carousel-control-next-icon" aria-hidden="true"></span>    <span class="sr-only">Next</span>  </a></div>'
+
+
+    $('#photo-carousel-container').append(html);
+
 
     //carouselModal(carousel);
 
@@ -157,25 +169,8 @@ function showPhotos(list) {
     // ADD FUNCTION to popup full photo modal on click
     dest.on('click', '.card', function() {
         var idx = $(this).attr('id').split('-')[1];
-/*        var img = '<img id='+ idx+ ' src="' + photoList[idx].full + '" class="img-fluid" ' +
-                  'alt="' + photoList[idx].key + '">'
-        fullPhotoModal(img);*/
 
         fullPhotoModal(idx);
-        
-
-        /*var li = '#carousel-li-' + idx;
-        var item = '#carousel-item-' + idx;
-
-        carouselModal(carousel);
-
-        $(li).addClass('active');
-        $(item).removeClass('carousel-item');
-        $(item).addClass('carousel-item-active');
-
-        $('#photo-carousel-modal').modal();*/
-
-
 
     });
 }

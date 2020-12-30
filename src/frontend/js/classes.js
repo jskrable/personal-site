@@ -81,14 +81,23 @@ class Photo {
         return html;
     }
 
-    indicator() {
-        html = '<li id="carousel-li-' + this.index + '" data-target="#carouselExampleIndicators" data-slide-to="' + this.index + '"></li>';
+    indicator(active) {
+        if (active) {
+            html = '<li data-target="#carouselExampleIndicators" class="active" data-slide-to="' + this.index + '"></li>';
+        } else {
+            html = '<li data-target="#carouselExampleIndicators" data-slide-to="' + this.index + '"></li>';
+        }
 
         return html;
     }
 
-    item() {
-        html = '<div id="carousel-item-' + this.index + '" class="carousel-item"><img src="' + this.full + '" class="d-block w-100" alt="..."></div>';
+    item(active) {
+        if (active) {
+            html = '<div class="carousel-item active"><img src="' + this.full + '" class="d-block w-100" alt="..."></div>';
+        } else {
+            html = '<div class="carousel-item"><img src="' + this.full + '" class="d-block w-100" alt="..."></div>';
+        }
+
         return html;
     }
 
