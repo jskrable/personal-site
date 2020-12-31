@@ -48,13 +48,18 @@ class Project {
 
     card() {
         //console.log(this.photo) 
+        if (this.description.length > 100) {
+            var desc = this.description.substring(0,100) + '...';
+        } else {
+            var desc = this.description;
+        }
 
-        html = '<div class="card bg-light">' +
+        html = '<div id="'+this.title+'"class="card bg-light">' +
             // works only if GIF exists
             '<img src="' + this.photo + '" class="card-img-top">' +
             '<div class="card-body">' +
             '<h5 id="project-title" class="card-title">' + this.title + '</h5>' +
-            '<p class="card-text">' + this.description + '</p>' +
+            '<p id="project-text" class="card-text">' + desc + '</p>' +
             '<a href="' + this.repo + '" target="_blank" class="btn btn-primary">View on Github</a>' +
             '</div></div>'
 

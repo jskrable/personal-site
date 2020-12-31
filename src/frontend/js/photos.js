@@ -137,6 +137,7 @@ function createCarousel(list) {
 
 
     $('#photo-carousel-container').append(html);
+    $('.carousel').carousel('cycle');
 
 
     //carouselModal(carousel);
@@ -152,6 +153,8 @@ function showPhotos(list) {
     photoList = list.map((item, index) => new Photo(index, item));
 
     createCarousel(photoList);
+
+    //$('#photos').append('<br><p>Here are a few more to look through</p><br>');
 
     photoList.forEach(
 		function(photo) {
