@@ -85,7 +85,7 @@ function drawNavbar() {
     // navbar color here in <nav>
     html = '<script type="text/javascript" src="js/active.js"></script>' +
         '<nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar" style="background-color: #4f5450;">' +
-        '<a class="navbar-brand" onclick=home.load(); href="#"><strong>HOME</strong></a>' +
+        '<a class="navbar-brand" onclick=home.load(); href="#"><strong>{Home}</strong></a>' +
         '<button class="navbar-toggler" type="button" data-toggle="collapse" ' +
         'data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" ' +
         'aria-expanded="false" aria-label="Toggle navigation">' +

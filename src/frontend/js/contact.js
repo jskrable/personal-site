@@ -6,14 +6,46 @@
 
 // Retrieve basic site configuration info
 var config = siteInfo();
-var fields = ['name','email','phone','message']
+var fields = ['name', 'email', 'phone', 'message']
 
 // Get search query
-$( document ).ready(function() {
+$(document).ready(function() {
     //$('#content').css("height","100%");
     //resizeBody();
-    
-    $('#submit').click((e) => {
+
+    basicValidation();
+
+});
+
+
+function basicValidation() {
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        console.log('Bad form, no submit')
+                    } else if (form.checkValidity() === true) {
+                        submitFormData();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+
+}
+
+
+function submitFormData() {
+    console.log('submitting form')
+    /*$('#submit').click((e) => {*/
         submission = {
             "name": $('#contact-name').val(),
             "email": $('#contact-email').val(),
@@ -31,28 +63,25 @@ $( document ).ready(function() {
             InvocationType: 'RequestResponse',
             LogType: 'Tail',
             Payload: '{"submission": ' + JSON.stringify(submission) + '}'
-            };
+        };
         console.log(params);
         triggerLambda(params, 'displaySubmission');
-    });
-});
-
-
-
+    //});
+};
 
 // Create modal for response display 
 function displaySubmission(message) {
 
     html = '<div id="response-modal" class="modal fade h-100 d-flex flex-column justify-content-center my-0" tabindex="-1" role="dialog" aria-hidden="true">' +
-             '<div class="modal-dialog" role="document">' +
-               '<div class="modal-content">' +
-                 '<div class="modal-body">' +
-                   '<h3 class="text-center">Thanks for your submission. I\'ll be in contact with you soon.</h3>' +
-                 '</div>' +
-                 '<div class="row justify-content-center">' +
-                   '<div class="modal-footer">' +
-                     '<button type="button" class="btn btn-primary text-center" data-dismiss="modal" type="reset">Close</button>' + 
-            '</div></div></div></div></div>';
+        '<div class="modal-dialog" role="document">' +
+        '<div class="modal-content">' +
+        '<div class="modal-body">' +
+        '<h3 class="text-center">Thanks for your submission. I\'ll be in contact with you soon.</h3>' +
+        '</div>' +
+        '<div class="row justify-content-center">' +
+        '<div class="modal-footer">' +
+        '<button type="button" class="btn btn-primary text-center" data-dismiss="modal" type="reset">Close</button>' +
+        '</div></div></div></div></div>';
 
     // Add modal html to page
     $('#wallpaper').append(html);
@@ -60,7 +89,7 @@ function displaySubmission(message) {
     $('#response-modal').modal()
 
     // exit modal and clear form
-    $('#response-modal').on('hidden.bs.modal', function (e) {
+    $('#response-modal').on('hidden.bs.modal', function(e) {
         $(this).remove()
         $('#contact-name').val('');
         $('#contact-email').val('');
