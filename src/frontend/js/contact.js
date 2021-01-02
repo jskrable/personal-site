@@ -58,6 +58,7 @@ function submitFormData() {
             Payload: '{"submission": ' + JSON.stringify(submission) + '}'
         };
         console.log(params);
+        workingModal();
         triggerLambda(params, 'displaySubmission');
     //});
 };
@@ -65,10 +66,11 @@ function submitFormData() {
 function workingModal() {
     html = '<div id="working-modal" class="modal fade h-100 d-flex flex-column justify-content-center my-0" tabindex="-1" role="dialog" aria-hidden="true">' +
         '<div class="modal-dialog" role="document">' +
-        '<div class="modal-content">' +
+        '<div class="modal-content text-center">' +
         '<div class="modal-body">' +
+        '<p>Submitting...</p>'+
         '<div id="loading" class="spinner-border" role="status">' + 
-        '<span class="sr-only">Submitting...</span></div>' + 
+        '<span class="sr-only"></span></div>' + 
         '<div class="row justify-content-center">' +
         '</div></div></div></div></div>';
 
@@ -94,7 +96,7 @@ function displaySubmission(message) {
         '</div>' +
         '<div class="row justify-content-center">' +
         '<div class="modal-footer">' +
-        '<button type="button" class="btn btn-primary text-center" data-dismiss="modal" type="reset">Close</button>' +
+        '<button type="button" class="btn btn-info text-center" data-dismiss="modal" type="reset">Close</button>' +
         '</div></div></div></div></div>';
 
     // Add modal html to page
