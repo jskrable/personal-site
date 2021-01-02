@@ -1,10 +1,15 @@
 <script src="js/contact.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/aws-sdk.min.js"></script>
-<div id="contact" class="container h-100 my-5 py-5 px-5">
-	<div class="row align-items-center px-3 py-2">
+<div id="contact" class="container-fluid my-5 py-5 px-5">
+	<!-- <div class="row align-items-center px-3 py-2">
 		<h2>Contact Me</h2>
+	</div> -->
+	<div class="container-fluid text-light text-center px-3 pt-5">
+		<h2>Contact Me</h2>
+		<br>
+		<p>I'll probably respond faster if you use the email, but feel free to leave me a message using the form below.</p>
 	</div>
-	<div class="row align-items-center py-5">
+	<div class="container-fluid text-light text-center px-3 pb-5">
 		<form class="needs-validation" novalidate>
 			<label for="contact-name" class="form-label"></label>
 			<input type="text" id="contact-name" class="form-control form-control-lg" placeholder="Name" required>
@@ -37,9 +42,16 @@
 			<!-- <input type="email" id="contact-email" class="form-control" placeholder="Email">
 			<input type="phone" id="contact-phone" class="form-control" placeholder="Phone">
 			<textarea type="textarea" id="contact-message" class="form-control" placeholder="Message..."></textarea> -->
-			<div class="container py-4">
-				<button type="submit" id="submit" class="btn btn-info">Submit</button>
+			<div class="container py-4 text-center">
+				<button type="submit" id="submit" class="btn btn-info btn-lg">Submit</button>
 			</div>
 		</form>
+		<div class="container-fluid py-3">
+			<h4>Here's a copy of my resume if that interests you:</h4>
+			<br>
+			<a href="assets/jack-skrable.pdf" download="jack-skrable.pdf" class="btn btn-info btn-lg" role="button">
+				<img src="css/images/download.svg">
+				Resume/CV
+			</a>
+		</div>
 	</div>
-</div>

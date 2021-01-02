@@ -10,24 +10,20 @@ var fields = ['name', 'email', 'phone', 'message']
 
 // Get search query
 $(document).ready(function() {
-    //$('#content').css("height","100%");
-    //resizeBody();
 
-    basicValidation();
+    $('#submit').click((e) => {
+        console.log('click')
+        customValidation();
+
+    });
 
 });
 
 
-function basicValidation() {
-    (function() {
-        'use strict';
-        window.addEventListener('load', function() {
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            var forms = document.getElementsByClassName('needs-validation');
-            // Loop over them and prevent submission
-            var validation = Array.prototype.filter.call(forms, function(form) {
-                form.addEventListener('submit', function(event) {
-                    if (form.checkValidity() === false) {
+function customValidation() {
+    var forms = document.getElementsByClassName('needs-validation');
+    var validation = Array.prototype.filter.call(forms, function(form) {
+        if (form.checkValidity() === false) {
                         event.preventDefault();
                         event.stopPropagation();
                         console.log('Bad form, no submit')
@@ -35,12 +31,9 @@ function basicValidation() {
                         submitFormData();
                     }
                     form.classList.add('was-validated');
-                }, false);
-            });
-        }, false);
-    })();
-
+                });
 }
+
 
 
 function submitFormData() {
@@ -69,8 +62,29 @@ function submitFormData() {
     //});
 };
 
+function workingModal() {
+    html = '<div id="working-modal" class="modal fade h-100 d-flex flex-column justify-content-center my-0" tabindex="-1" role="dialog" aria-hidden="true">' +
+        '<div class="modal-dialog" role="document">' +
+        '<div class="modal-content">' +
+        '<div class="modal-body">' +
+        '<div id="loading" class="spinner-border" role="status">' + 
+        '<span class="sr-only">Submitting...</span></div>' + 
+        '<div class="row justify-content-center">' +
+        '</div></div></div></div></div>';
+
+        // Add modal html to page
+    $('#wallpaper').append(html);
+    // Show modal
+    $('#working-modal').modal();
+
+
+}
+
 // Create modal for response display 
 function displaySubmission(message) {
+
+    $('#working-modal').remove();
+    $('.modal-backdrop').remove();
 
     html = '<div id="response-modal" class="modal fade h-100 d-flex flex-column justify-content-center my-0" tabindex="-1" role="dialog" aria-hidden="true">' +
         '<div class="modal-dialog" role="document">' +
