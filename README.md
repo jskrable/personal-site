@@ -5,3 +5,5 @@ Use /src/js/config.js to modify basic site information like social links, author
 Built w/ Bootstrap 4.4.1
 
 
+## PHOTOS
+please put a selection of photos into `./middleware/photos`. Use the highest quality possible, the transform photo script will resize them and create thumbnails.

@@ -64,6 +64,12 @@ function siteInfo() {
         }, {
             "title": "custom-shell",
             "description": "A custom shell for Unix systems written in C."
+        }, {
+            "title": "personal-site",
+            "description": "This website. It was built to experiment with creating a personal portfolio site template configurable (mostly) by a simple JSON document. Created with basic JS and Bootstrap 4.0."
+        }, {
+            "title": "biden-stance",
+            "description": "A twitter bot that scrapes the long congressional voting history of Joe Biden and posts a random stance. Uses AWS Lambda and Python 3.6."
         }]
     };
 
