@@ -12,6 +12,9 @@ echo Deploying site code to S3 bucket
 aws s3 sync $front s3://jackskrable.com/
 
 # ADD PHOTOS FUNCTION HERE
+echo Transforming and syncing photos with $middle'transformPhotos.sh'
+'.'$middle'transformPhotos.sh'
+
 # zip up middleware function
 echo Zipping lamba functions
 cd ./src/middleware
