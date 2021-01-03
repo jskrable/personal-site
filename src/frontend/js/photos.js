@@ -150,6 +150,9 @@ function showPhotos(list) {
     $('#scroll-top-button').removeClass('invisible');
     $('#scroll-top-button').addClass('visible');
     var dest = $('#photo-list');
+
+    var buffer = '<br><h4>Some more to scroll through. Click to zoom, arrow keys to move.</h4><br>'
+    $('#photo-list-container').prepend(buffer);
     photoList = list.map((item, index) => new Photo(index, item));
 
     createCarousel(photoList);

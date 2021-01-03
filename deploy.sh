@@ -11,9 +11,9 @@ middle="$dir/src/middleware/"
 echo Deploying site code to S3 bucket
 aws s3 sync $front s3://jackskrable.com/
 
-# ADD PHOTOS FUNCTION HERE
+# Check for photo changes?
 echo Transforming and syncing photos with $middle'transformPhotos.sh'
-'.'$middle'transformPhotos.sh'
+bash $middle'transformPhotos.sh'
 
 # zip up middleware function
 echo Zipping lamba functions

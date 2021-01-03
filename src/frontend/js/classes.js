@@ -80,9 +80,7 @@ class Photo {
 
     card() {
         html = '<div id="thumb-' + this.index + '" class="card bg-light mb-3">' +
-            // works only if GIF exists
-            '<img src="' + this.thumb + '" class="card-img-top">' +
-            '</div>'
+            '<img src="' + this.thumb + '" class="card-img-top" alt="' + this.key + '">' + '</div>'
         return html;
     }
 

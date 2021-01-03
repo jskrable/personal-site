@@ -1,5 +1,16 @@
 #!/bin/bash
-# sync frontend and middleware to AWS
+# batch process photos for serving
+
+sp="/-\|"
+sc=0
+spin() {
+   printf "\b${sp:sc++:1}"
+   ((sc==${#sp})) && sc=0
+}
+endspin() {
+   printf "\r%s\n" "$@"
+}
+
 
 start=$PWD
 backup='backup'
@@ -16,12 +27,16 @@ mkdir ./upload/thumbs
 
 echo Converting to 2000x1333 for upload...
 for file in *.jpg
-	do convert -verbose $file -resize 2000 'upload/'$file
+	do spin;
+	convert $file -resize 2000 'upload/'$file;
 done
+endspin
 echo Creating thumbs for upload...
 for file in *.jpg
-	do convert -verbose $file -resize 300 'upload/thumbs/'$file
+	do spin;
+	convert $file -resize 300 'upload/thumbs/'$file;
 done
+endspin
 
 # echo Clearing asset bucket...
 # aws s3 rm s3://jackskrable-site-assets/photos/ --include='*' --recursive
@@ -30,6 +45,6 @@ aws s3 sync ./upload s3://jackskrable-site-assets/photos/ --include='*'
 
 echo Cleaning up...
 cd $start
-rm -rf ./src/middleware/photos/backup
+# rm -rf ./src/middleware/photos/backup
 rm -rf ./src/middleware/photos/upload
 
