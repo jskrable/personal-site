@@ -113,6 +113,7 @@ function displaySubmission(message) {
         $('#contact-email').val('');
         $('#contact-phone').val('');
         $('#contact-message').val('');
+        $('#contact-form').removeClass('was-validated');
     });
 
 }

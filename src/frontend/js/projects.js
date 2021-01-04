@@ -16,11 +16,8 @@ var projectList = config.projects.map(
     });
 
 
-// ADD BIG POPUP MODAL WHEN CLICKING ON CARD
 
 function detailModal(project) {
-
-    console.log('id to show ' + project)
 
     html =  '<div id="project-detail-modal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">'
     html += '<div class="modal-dialog modal-lg modal-dialog-centered">'
