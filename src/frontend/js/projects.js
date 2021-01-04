@@ -11,7 +11,7 @@ var temp;
 var projectList = config.projects.map(
     x => {
         var key = x.title.split('-')[0].toLowerCase(); 
-        this[key] = new Project(x.title, x.description)
+        this[key] = new Project(x.title, x.description, x.github)
         return this[key]
     });
 

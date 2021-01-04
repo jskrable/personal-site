@@ -21,13 +21,15 @@ $(document).ready(function() {
 
 
 function customValidation() {
+    console.log('customValidation')
     var forms = document.getElementsByClassName('needs-validation');
     var validation = Array.prototype.filter.call(forms, function(form) {
         if (form.checkValidity() === false) {
-                        event.preventDefault();
-                        event.stopPropagation();
+                        //event.preventDefault();
+                        //event.stopPropagation();
                         console.log('Bad form, no submit')
                     } else if (form.checkValidity() === true) {
+                        // SOMETHING HERE IS ADDING "?" to URI
                         submitFormData();
                     }
                     form.classList.add('was-validated');

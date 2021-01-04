@@ -43,7 +43,11 @@ class Project {
         this.title = title;
         this.description = description;
         this.photo = 'assets/projects/' + this.title + '.gif';
-        this.repo = 'https://github.com/jskrable/' + this.title;
+        if (this.title.split('/').length > 1) {
+            this.repo = 'https://github.com/' + this.title;
+        } else {
+            this.repo = 'https://github.com/jskrable/' + this.title;
+        }
     }
 
     card() {

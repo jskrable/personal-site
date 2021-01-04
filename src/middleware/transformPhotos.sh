@@ -31,12 +31,14 @@ for file in *.jpg
 	convert $file -resize 2000 'upload/'$file;
 done
 endspin
+echo Done with full size conversion.
 echo Creating thumbs for upload...
 for file in *.jpg
 	do spin;
 	convert $file -resize 300 'upload/thumbs/'$file;
 done
 endspin
+echo Done with thumbnail creation.
 
 # echo Clearing asset bucket...
 # aws s3 rm s3://jackskrable-site-assets/photos/ --include='*' --recursive
