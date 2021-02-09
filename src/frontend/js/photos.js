@@ -179,6 +179,8 @@ function showPhotos(list) {
         fullPhotoModal(idx);
 
     });
+
+    resizeBody();
 }
 
 

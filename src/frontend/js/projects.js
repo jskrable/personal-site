@@ -89,14 +89,15 @@ function showCards(projectList) {
 
     });
 
+    resizeBody();
     
 
 }
 
 $( document ).ready(function() {
     showCards(projectList);    
-    $('#content').change(function() {
+    /*$('#content').change(function() {
         console.log('content change')
         $(this).css("height", $('#projects').height() + 100);
-    })
+    })*/
 });
