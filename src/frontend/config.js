@@ -19,8 +19,14 @@ function siteInfo() {
             "Take a look around!"
         ],
         "socials": {
-            "github": "https://github.com/jskrable",
-            "linkedin": "https://www.linkedin.com/in/jackskrable/"
+            "github": {
+             "url": "https://github.com/jskrable",
+             "icon": "css/images/github-logo.png"
+            },
+            "linkedin":{
+             "url": "https://www.linkedin.com/in/jackskrable/",
+             "icon": "css/images/linkedin-logo.png"
+            }
         },
         "sections": [
             "Projects",

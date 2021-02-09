@@ -6,6 +6,7 @@
 
 // Retrieve basic site configuration info
 var config = siteInfo();
+const mobile = window.navigator.userAgent.toLowerCase().includes("mobi");
 //resizeBody();
 
 // jQuery called on page load
@@ -45,22 +46,6 @@ function loadWallpaper() {
         '\'); background-repeat: no-repeat; background-size: cover; background-position: center center;">'
     $('#content').append(wallpaper);
 }
-
-
-// change this to use fetchHTML
-/*function loadHome() {
-    console.log('removing existing content....');
-    //$('#wallpaper').children().remove();
-    console.log('loading home page...');
-    // need to center headshot within column
-    var info = '<div class="mask align-items-left"><div class="container py-5 px-5">'
-             + '<div class="mt-5 px-5"><div class="white-text text-md-left">'
-             + '<img src="' + config.images.headshot + '" class="rounded-circle px-1 py-1">'
-             + '<h4 class="font-weight-bold py-3 px-1">'
-             + config.bio
-             + '</h4></div></div></div></div>';
-    $('#content').append(info);
-}*/
 
 
 // change this to use fetchHTML
@@ -107,11 +92,11 @@ function drawNavbar() {
 function drawFooter() {
     // Social media links for footer
     var links = [{
-        "href": config.socials.linkedin,
-        "img": "css/images/linkedin-logo.png"
+        "href": config.socials.linkedin.url,
+        "img": config.socials.linkedin.icon
     }, {
-        "href": config.socials.github,
-        "img": "css/images/github-logo.png"
+        "href": config.socials.github.url,
+        "img": config.socials.github.icon
     }, {
         "href": "mailto:" + config.email,
         "img": "css/images/email.png"
@@ -170,31 +155,24 @@ function hookRedirect() {
     //console.log(section);
     if (section == '' || typeof section === 'undefined') {
         home.load(() => home.resize());
-        //home.resize();
     } else {
         view['load']();
-        //view['resize']();
     }
-    resizeBody();
 }
 
 
 function resizeBody() {
-    $(".body").on('DOMSubtreeModified', "#content", function() {
-        if ($(window).height() > $('.body').height()) {
-            var hook = getHook();
-            if (hook == 'contact' || hook == '' || typeof hook === 'undefined') {
-                //var section = $('#' + hook);
-                console.log('resizing');
-                var height = $(window).height() - $('#footer').height();
-                $(this).css("height", height);
-                $('#wallpaper').css("height", height);
-            } else {
-                $(this).css("height", '');
-                $('#wallpaper').css("height", '');
-            }
-        }
-    });
+    content = $('#content')[0];
+    if (mobile && content.scrollHeight > content.clientHeight) {
+        console.log('mobile expand')
+        $('#wallpaper').css("height", content.scrollHeight); 
+    } else if (!mobile && $(window).height() > content.scrollHeight) {
+        console.log('desktop expand')
+        var height = $(window).height() - $('#footer').height();
+        $('#wallpaper').css("height", height); 
+    } else {
+        $('#wallpaper').css("height", '');
+    }
 }
 
 // clear content on link click or refresh here
@@ -205,4 +183,5 @@ function render() {
     loadWallpaper();
     createViews();
     hookRedirect();
+    resizeBody();
 }
